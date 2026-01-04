@@ -3,141 +3,597 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Instastrategix - Helping small businesses, coaches, and startups grow with stunning visuals & marketing">
-    <meta name="keywords" content="digital marketing, graphic design, social media marketing, website design, small business marketing">
-    <title>Instastrategix - Premium Digital Marketing Agency</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Instastrategix - Digital Marketing Agency</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        /* ========== CSS RESET & BASE ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* ========== NAVIGATION ========== */
+        .navbar {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        .logo-tagline {
+            font-size: 0.7rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        
+        /* ========== HERO SECTION ========== */
+        .hero {
+            padding: 150px 0 80px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            margin-top: 70px;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        /* ========== BUTTONS ========== */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* ========== SERVICES SECTION ========== */
+        .services {
+            padding: 80px 0;
+            background: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .service-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .btn-text {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-text:hover {
+            gap: 10px;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* ========== STATS SECTION ========== */
+        .stats {
+            padding: 60px 0;
+            background: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--light);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        .stat-item:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .stat-item:hover h3,
+        .stat-item:hover p {
+            color: white;
+        }
+        
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-item p {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        /* ========== BLOG SECTION ========== */
+        .blog {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--dark), #111827);
+            color: white;
+        }
+        
+        .blog .section-title h2,
+        .blog .section-title p {
+            color: white;
+        }
+        
+        .blog-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .blog-content p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-col p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-contact {
+            list-style: none;
+        }
+        
+        .footer-contact li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #bbb;
+        }
+        
+        .footer-contact i {
+            color: var(--primary);
+            width: 20px;
+        }
+        
+        .footer-contact a {
+            color: #bbb;
+            text-decoration: none;
+        }
+        
+        .footer-contact a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        /* ========== MOBILE RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-contact li {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <!-- Mobile Menu Toggle -->
-            <button class="menu-toggle" aria-label="Toggle navigation">
-                <span class="hamburger"></span>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
             </button>
             
-            <!-- Navigation Links -->
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link active">Home</a></li>
-                <li><a href="about.html" class="nav-link">About Us</a></li>
-                <li><a href="services.html" class="nav-link">Services</a></li>
-                <li><a href="founder.html" class="nav-link">Founder</a></li>
-                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
-                <li><a href="privacy.html" class="nav-link">Privacy Policy</a></li>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="founder.html">Founder</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
             </ul>
             
-            <!-- Logo in top-right corner as specified -->
-            <div class="logo-container">
-                <a href="index.html" class="logo">
-                    <span class="logo-text">Instastrategix</span>
-                    <span class="logo-tagline">Digital Marketing Agency</span>
-                </a>
-            </div>
+            <a href="index.html" class="logo">
+                Instastrategix
+                <span class="logo-tagline">Digital Marketing Agency</span>
+            </a>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">Instastrategix</h1>
-                <p class="hero-subtitle">Helping small businesses, coaches, and startups grow with stunning visuals & marketing.</p>
-                <a href="contact.html" class="btn btn-primary">Get Free Consultation</a>
-            </div>
-            <div class="hero-image">
-                <div class="image-placeholder">
-                    <i class="fas fa-chart-line"></i>
-                    <p>Visual Marketing Solutions</p>
-                </div>
-            </div>
+        <div class="container hero-content">
+            <h1>Instastrategix</h1>
+            <p>Helping small businesses, coaches, and startups grow with stunning visuals & marketing.</p>
+            <a href="#contact" class="btn">Get Free Consultation</a>
         </div>
     </section>
 
-    <!-- Services Preview -->
-    <section class="services-preview">
+    <!-- Services Section -->
+    <section class="services">
         <div class="container">
-            <h2 class="section-title">Our Premium Services</h2>
-            <p class="section-subtitle">Tailored solutions for small businesses, coaches, and startups</p>
+            <div class="section-title">
+                <h2>Our Premium Services</h2>
+                <p>Tailored solutions for small businesses, coaches, and startups</p>
+            </div>
             
             <div class="services-grid">
-                <!-- Service 1 -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-palette"></i>
                     </div>
                     <h3>Logo & Graphic Design</h3>
                     <p>Professional branding that makes your business stand out and be memorable.</p>
-                    <a href="services.html#graphic-design" class="btn-text">Learn More →</a>
+                    <a href="#services" class="btn-text">Learn More →</a>
                 </div>
                 
-                <!-- Service 2 -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <h3>Website Design</h3>
                     <p>Responsive, conversion-optimized websites that engage your audience.</p>
-                    <a href="services.html#web-design" class="btn-text">Learn More →</a>
+                    <a href="#services" class="btn-text">Learn More →</a>
                 </div>
                 
-                <!-- Service 3 -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-bullhorn"></i>
                     </div>
                     <h3>Social Media Marketing</h3>
                     <p>Strategic campaigns that grow your online presence and drive results.</p>
-                    <a href="services.html#social-media" class="btn-text">Learn More →</a>
+                    <a href="#services" class="btn-text">Learn More →</a>
                 </div>
             </div>
             
             <div class="text-center">
-                <a href="services.html" class="btn btn-secondary">View All Services</a>
+                <a href="#services" class="btn btn-secondary">View All Services</a>
             </div>
         </div>
     </section>
 
-    <!-- Social Proof -->
-    <section class="social-proof">
+    <!-- Stats Section -->
+    <section class="stats">
         <div class="container">
-            <h2 class="section-title">Trusted By Growing Businesses</h2>
-            <div class="proof-stats">
+            <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Projects Completed</div>
+                    <h3>100+</h3>
+                    <p>Projects Completed</p>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">95%</div>
-                    <div class="stat-label">Client Satisfaction</div>
+                    <h3>95%</h3>
+                    <p>Client Satisfaction</p>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Businesses Empowered</div>
+                    <h3>50+</h3>
+                    <p>Businesses Empowered</p>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Support Available</div>
+                    <h3>24/7</h3>
+                    <p>Support Available</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Blog Integration -->
-    <section class="blog-integration">
+    <!-- Blog Section -->
+    <section class="blog">
         <div class="container">
+            <div class="section-title">
+                <h2>Digital Marketing Education</h2>
+                <p>Learn strategies to grow your business with our expert insights</p>
+            </div>
+            
             <div class="blog-content">
-                <h2 class="section-title">Digital Marketing Education</h2>
-                <p class="section-subtitle">Learn strategies to grow your business with our expert insights</p>
                 <p>Stay ahead of the curve with our blog where we share valuable marketing tips, industry trends, and success strategies specifically for small businesses, coaches, and startups.</p>
-                <a href="https://instastrategix0.blogspot.com/" target="_blank" class="btn btn-primary">
+                <a href="https://instastrategix0.blogspot.com/" target="_blank" class="btn">
                     <i class="fas fa-book-open"></i> Visit Our Blog
                 </a>
             </div>
@@ -145,16 +601,16 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <div class="footer-logo">Instastrategix</div>
-                    <p class="footer-tagline">Helping small businesses, coaches, and startups grow with stunning visuals & marketing.</p>
+                    <h3>Instastrategix</h3>
+                    <p>Helping small businesses, coaches, and startups grow with stunning visuals & marketing.</p>
                 </div>
                 
                 <div class="footer-col">
-                    <h3 class="footer-heading">Quick Links</h3>
+                    <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
@@ -165,7 +621,7 @@
                 </div>
                 
                 <div class="footer-col">
-                    <h3 class="footer-heading">Contact Info</h3>
+                    <h3>Contact Info</h3>
                     <ul class="footer-contact">
                         <li>
                             <i class="fas fa-user"></i>
@@ -181,25 +637,87 @@
                         </li>
                         <li>
                             <i class="fas fa-blog"></i>
-                            <span><a href="https://instastrategix0.blogspot.com/" target="_blank">Digital Marketing Education Blog</a></span>
+                            <span><a href="https://instastrategix0.blogspot.com/" target="_blank">Our Blog</a></span>
                         </li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
-                    <h3 class="footer-heading">Get In Touch</h3>
+                    <h3>Get In Touch</h3>
                     <p>Ready to grow your business? Let's discuss your marketing needs.</p>
-                    <a href="contact.html" class="btn btn-primary">Contact Us Today</a>
+                    <a href="contact.html" class="btn">Contact Us Today</a>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> Instastrategix. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
+                <p>&copy; 2024 Instastrategix. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
-    <script src="js/animations.js"></script>
+    <!-- Simple JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+            this.innerHTML = this.innerHTML.includes('bars') ? 
+                '<i class="fas fa-times"></i>' : 
+                '<i class="fas fa-bars"></i>';
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const mobileBtn = document.getElementById('mobileMenuBtn');
+            
+            if (!navLinks.contains(event.target) && !mobileBtn.contains(event.target)) {
+                navLinks.classList.remove('active');
+                mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // Set current year in footer
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearElement = document.querySelector('.footer-bottom p');
+            if (yearElement) {
+                yearElement.innerHTML = yearElement.innerHTML.replace('2024', new Date().getFullYear());
+            }
+            
+            // Add hover effects to service cards
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Simple scroll animation
+            const revealElements = document.querySelectorAll('.service-card, .stat-item');
+            const revealOnScroll = function() {
+                revealElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state
+            revealElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Initial check
+        });
+    </script>
 </body>
 </html>
