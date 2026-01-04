@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Instastrategix - Helping small businesses, coaches, and startups grow with stunning visuals & marketing.">
     <title>Instastrategix - Digital Marketing Agency</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="container">
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
@@ -19,41 +28,130 @@
                 <li><a href="founder.html">Founder</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>
-            <a href="index.html" class="logo-link"><img src="images/logo.png" alt="Instastrategix Logo" class="logo"></a>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
+            <a href="index.html" class="logo-link">
+                <img src="images/logo.png" alt="Instastrategix Logo" class="logo">
+            </a>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="container">
-            <h1>Helping small businesses, coaches, and startups grow with stunning visuals & marketing.</h1>
-            <p>Your partner in digital growth.</p>
-            <a href="contact.html" class="cta-btn">Get Started</a>
-        </div>
-    </header>
+    <!-- Hero Section with Parallax -->
+<header class="hero">
+    <div class="parallax-bg parallax-element" data-speed="-0.3"></div>
+    
+    <div class="shapes">
+        <div class="shape shape1 parallax-element" data-speed="0.4"></div>
+        <div class="shape shape2 parallax-element" data-speed="-0.2"></div>
+        <div class="shape shape3 parallax-element" data-speed="0.3"></div>
+        <div class="shape shape4 parallax-element" data-speed="-0.5"></div>
+    </div>
+    
+    <div class="hero-overlay"></div>
+    
+    <div class="container hero-content" data-aos="fade-down">
+        <h1>Helping small businesses, coaches, and startups grow with <span id="typed"></span></h1>
+        <p class="hero-sub">Your trusted partner in digital success.</p>
+        <a href="contact.html" class="cta-btn">Start Your Project</a>
+    </div>
+</header>
 
-    <section class="overview">
-        <div class="container">
-            <h2>Welcome to Instastrategix</h2>
-            <p>We specialize in transforming ideas into impactful digital experiences.</p>
-            <a href="services.html" class="cta-btn secondary">Explore Services</a>
+    <!-- Services Preview -->
+    <section class="services-preview container" data-aos="fade-up">
+        <h2 class="section-title">Our Professional Services</h2>
+        <div class="cards-grid">
+            <!-- Repeat card pattern -->
+            <div class="card" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-pencil-ruler"></i>
+                <h3>Logo & Graphic Design</h3>
+                <p>Unique brand identity that stands out.</p>
+            </div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Website Design</h3>
+                <p>Modern, responsive websites built for conversion.</p>
+            </div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fas fa-file-powerpoint"></i>
+                <h3>PPT & Company Profiles</h3>
+                <p>Professional presentations that impress.</p>
+            </div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="400">
+                <i class="fas fa-images"></i>
+                <h3>Brochures & Posters</h3>
+                <p>Eye-catching print and digital materials.</p>
+            </div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="500">
+                <i class="fab fa-instagram"></i>
+                <h3>Social Media Creatives</h3>
+                <p>Engaging content that drives followers.</p>
+            </div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="600">
+                <i class="fas fa-chart-line"></i>
+                <h3>Ads Campaigns</h3>
+                <p>Meta & Google Ads for measurable growth.</p>
+            </div>
+        </div>
+        <a href="services.html" class="cta-btn secondary">View All Services</a>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us">
+        <div class="container" data-aos="fade-up">
+            <h2 class="section-title">Why Choose Instastrategix?</h2>
+            <div class="features-grid">
+                <div class="feature" data-aos="fade-right">
+                    <i class="fas fa-palette"></i>
+                    <h4>Creative Excellence</h4>
+                    <p>Stunning, custom visuals tailored to your brand.</p>
+                </div>
+                <div class="feature" data-aos="fade-up">
+                    <i class="fas fa-bullhorn"></i>
+                    <h4>Strategic Marketing</h4>
+                    <p>Data-driven campaigns that deliver results.</p>
+                </div>
+                <div class="feature" data-aos="fade-left">
+                    <i class="fas fa-wallet"></i>
+                    <h4>Affordable Pricing</h4>
+                    <p>Premium quality without breaking the bank.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Teaser -->
+    <section class="founder-teaser container" data-aos="fade-up">
+        <h2 class="section-title">Meet the Founder</h2>
+        <div class="founder-flex">
+            <div class="founder-text">
+                <p>Abhishek Choubey is a passionate digital marketer dedicated to helping small businesses and coaches succeed online.</p>
+                <a href="founder.html" class="cta-btn secondary">Learn More About Abhishek</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container" data-aos="fade-up">
+            <h2>Ready to Elevate Your Brand?</h2>
+            <p>Let's create something amazing together.</p>
+            <a href="contact.html" class="cta-btn">Get in Touch</a>
         </div>
     </section>
 
     <footer>
         <div class="container">
             <p>&copy; 2026 Instastrategix. All rights reserved.</p>
-            <ul>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="https://www.instagram.com/instastrategix/" target="_blank">Instagram</a></li>
-                <li><a href="https://instastrategix0.blogspot.com/" target="_blank">Blog</a></li>
-            </ul>
-            <p>Contact: instastrategixdigitalcreator@gmail.com</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="https://www.instagram.com/instastrategix/" target="_blank">Instagram</a>
+                <a href="https://instastrategix0.blogspot.com/" target="_blank">Blog</a>
+            </div>
+            <p>instastrategixdigitalcreator@gmail.com</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
