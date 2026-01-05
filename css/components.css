@@ -40,12 +40,11 @@
 }
 
 /* Nav Menu */
-
 .nav-menu {
     display: flex;
     align-items: center;
     gap: var(--space-lg);
-    transition: transform var(--transition-normal), opacity var(--transition-normal);
+    transition: all 0.3s ease;
 }
 
 .nav-link {
@@ -70,6 +69,11 @@
     width: 100%;
 }
 
+.nav-link.active {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
 .nav-cta {
     padding: 0.6rem 1.25rem;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
@@ -83,22 +87,48 @@
 }
 
 /* Mobile Toggle */
-
 .menu-toggle {
-    display: none; /* hidden by default, shown in responsive CSS */
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
     cursor: pointer;
+    color: var(--dark-color);
 }
 
-/* ==========================================================================
-   NAVBAR STATE CLASSES (used by main.js)
-   ========================================================================== */
+/* Responsive Nav */
+@media (max-width: 767px) {
+    .menu-toggle {
+        display: block;
+    }
 
-.navbar-scrolled {
-    box-shadow: var(--shadow-md);
-}
+    .nav-menu {
+        flex-direction: column;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        padding: var(--space-lg);
+        gap: var(--space-md);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        z-index: 999;
+    }
 
-.navbar-hidden {
-    transform: translateY(-100%);
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-cta {
+        margin-top: var(--space-md);
+        width: 100%;
+        text-align: center;
+    }
 }
 
 /* ==========================================================================
@@ -225,9 +255,10 @@
    ========================================================================== */
 
 .footer {
-    background-color: var(--dark-color);
-    color: var(--white);
+    background: linear-gradient(135deg, #1e1e2f, #11111f);
+    color: #d1d5db;
     padding: var(--space-xxl) 0 var(--space-lg);
+    font-family: var(--font-primary);
 }
 
 .footer-grid {
@@ -236,15 +267,27 @@
 }
 
 .footer a {
-    color: var(--gray-color);
+    color: #f3f4f6;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .footer a:hover {
     color: var(--primary-light);
 }
 
+.footer h4 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-md);
+}
+
+.footer p, .footer li {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
 .footer-bottom {
-    border-top: 1px solid var(--dark-light);
+    border-top: 1px solid #2c2c3d;
     padding-top: var(--space-lg);
     text-align: center;
     font-size: 0.875rem;
