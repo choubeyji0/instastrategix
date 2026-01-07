@@ -1,61 +1,84 @@
+
+main.js file:
+
+
 // ============================================================================
-// Main JavaScript – Instastrategix (ENHANCED VERSION)
+// Main JavaScript – Instastrategix (FIXED & STABLE)
 // ============================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================================================================
-       MOBILE NAVIGATION (ENHANCED)
+       MOBILE NAVIGATION
        ========================================================================== */
 
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // Overlay
-    const overlay = document.createElement('div');
-    overlay.className = 'nav-overlay';
-    document.body.appendChild(overlay);
-
-    function openMenu() {
-        navMenu.classList.add('active');
-        menuToggle.classList.add('active');
-        overlay.classList.add('active');
-        document.body.classList.add('nav-open');
-        menuToggle.setAttribute('aria-expanded', 'true');
-
-        // Focus first link (accessibility)
-        const firstLink = navMenu.querySelector('a');
-        if (firstLink) firstLink.focus();
-    }
-
-    function closeMenu() {
-        navMenu.classList.remove('active');
-        menuToggle.classList.remove('active');
-        overlay.classList.remove('active');
-        document.body.classList.remove('nav-open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.focus();
-    }
-
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
-            navMenu.classList.contains('active') ? closeMenu() : openMenu();
+            const isOpen = navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isOpen);
+            document.body.classList.toggle('nav-open', isOpen);
         });
-
-        overlay.addEventListener('click', closeMenu);
 
         navLinks.forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
-
-        // ESC key closes menu
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-                closeMenu();
-            }
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('nav-open');
+            });
         });
     }
+
+    /* ==========================================================================
+       STICKY HEADER (SAFE)
+       ========================================================================== */
+
+    const navbar = document.querySelector('.site-header');
+    let lastScroll = 0;
+
+    if (navbar) {
+        const handleScroll = throttle(() => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 80) {
+                navbar.classList.add('navbar-scrolled');
+
+                if (
+                    currentScroll > lastScroll &&
+                    currentScroll > 200 &&
+                    !document.body.classList.contains('nav-open')
+                ) {
+                    navbar.classList.add('navbar-hidden');
+                } else {
+                    navbar.classList.remove('navbar-hidden');
+                }
+            } else {
+                navbar.classList.remove('navbar-scrolled', 'navbar-hidden');
+            }
+
+            lastScroll = currentScroll;
+            toggleScrollTopButton(currentScroll);
+        }, 100);
+
+        window.addEventListener('scroll', handleScroll);
+    }
+
+    /* ==========================================================================
+       ACTIVE NAV LINK
+       ========================================================================== */
+
+    const currentPage =
+        window.location.pathname.split('/').pop() || 'index.html';
+
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        link.classList.toggle('active', href === currentPage);
+    });
 
     /* ==========================================================================
        FOOTER YEAR
@@ -65,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     /* ==========================================================================
-       SMOOTH ANCHOR SCROLL
+       SMOOTH SCROLL
        ========================================================================== */
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -82,36 +105,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================================================
-       FORM INPUT UX ENHANCEMENT
+       SCROLL TO TOP
        ========================================================================== */
 
-    document.querySelectorAll('.form-control').forEach(input => {
-        const parent = input.closest('.form-group');
+    const scrollBtn = document.createElement('button');
+    scrollBtn.className = 'scroll-to-top';
+    scrollBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    document.body.appendChild(scrollBtn);
 
-        if (input.value) parent.classList.add('focused');
-
-        input.addEventListener('focus', () => parent.classList.add('focused'));
-        input.addEventListener('blur', () => {
-            if (!input.value) parent.classList.remove('focused');
-        });
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    /* ==========================================================================
-       BUTTON RIPPLE EFFECT
-       ========================================================================== */
-
-    document.querySelectorAll('.btn').forEach(button => {
-        button.addEventListener('click', function (e) {
-            const ripple = document.createElement('span');
-            ripple.className = 'btn-ripple';
-            this.appendChild(ripple);
-
-            const rect = this.getBoundingClientRect();
-            ripple.style.left = `${e.clientX - rect.left}px`;
-            ripple.style.top = `${e.clientY - rect.top}px`;
-
-            setTimeout(() => ripple.remove(), 600);
-        });
-    });
+    function toggleScrollTopButton(scrollY) {
+        scrollBtn.classList.toggle('visible', scrollY > 300);
+    }
 
 });
+
+/* ==========================================================================
+   UTIL
+   ========================================================================== */
+
+function throttle(fn, limit = 100) {
+    let waiting = false;
+    return function (...args) {
+        if (!waiting) {
+            fn.apply(this, args);
+            waiting = true;
+            setTimeout(() => (waiting = false), limit);
+        }
+    };
+}
