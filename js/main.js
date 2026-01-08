@@ -133,3 +133,7 @@ function throttle(fn, limit = 100) {
         }
     };
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    initBackgroundCircles();
+});
