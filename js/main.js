@@ -1,17 +1,11 @@
 // ============================================================================
-// Main JavaScript – Instastrategix (FIXED & STABLE)
+// Main JavaScript – InstaStrategix
 // ============================================================================
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ==========================================================================
-       MOBILE NAVIGATION
-       ========================================================================== */
-
+    // Mobile Navigation
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
-
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
             const isOpen = navMenu.classList.toggle('active');
@@ -20,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.toggle('nav-open', isOpen);
         });
 
-        navLinks.forEach(link => {
+        document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
@@ -30,25 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ==========================================================================
-       STICKY HEADER (SAFE)
-       ========================================================================== */
-
+    // Sticky / Hide Header on Scroll
     const navbar = document.querySelector('.site-header');
     let lastScroll = 0;
-
     if (navbar) {
-        const handleScroll = throttle(() => {
+        window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
-
             if (currentScroll > 80) {
                 navbar.classList.add('navbar-scrolled');
-
-                if (
-                    currentScroll > lastScroll &&
-                    currentScroll > 200 &&
-                    !document.body.classList.contains('nav-open')
-                ) {
+                if (currentScroll > lastScroll && currentScroll > 200) {
                     navbar.classList.add('navbar-hidden');
                 } else {
                     navbar.classList.remove('navbar-hidden');
@@ -56,54 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 navbar.classList.remove('navbar-scrolled', 'navbar-hidden');
             }
-
             lastScroll = currentScroll;
-            toggleScrollTopButton(currentScroll);
-        }, 100);
-
-        window.addEventListener('scroll', handleScroll);
+        });
     }
 
-    /* ==========================================================================
-       ACTIVE NAV LINK
-       ========================================================================== */
-
-    const currentPage =
-        window.location.pathname.split('/').pop() || 'index.html';
-
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        link.classList.toggle('active', href === currentPage);
+    // Active nav link
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        }
     });
 
-    /* ==========================================================================
-       FOOTER YEAR
-       ========================================================================== */
+    // Footer year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
 
-    const yearEl = document.getElementById('current-year');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-    /* ==========================================================================
-       SMOOTH SCROLL
-       ========================================================================== */
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', e => {
-            const target = document.querySelector(anchor.getAttribute('href'));
-            if (!target) return;
-
-            e.preventDefault();
-            window.scrollTo({
-                top: target.offsetTop - 80,
-                behavior: 'smooth'
-            });
-        });
-    });
-
-    /* ==========================================================================
-       SCROLL TO TOP
-       ========================================================================== */
-
+    // Scroll to top button
     const scrollBtn = document.createElement('button');
     scrollBtn.className = 'scroll-to-top';
     scrollBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
@@ -113,23 +65,37 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    function toggleScrollTopButton(scrollY) {
-        scrollBtn.classList.toggle('visible', scrollY > 300);
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollBtn.classList.add('visible');
+        } else {
+            scrollBtn.classList.remove('visible');
+        }
+    });
+
+    // GSAP Hero Animation
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.timeline({ defaults: { ease: "power4.out" } })
+        .from(".hero h1 span", { y: "180%", opacity: 0, stagger: 0.3, duration: 1.8 }, 0.5)
+        .from(".hero p",       { y: 100, opacity: 0, duration: 1.5 }, "-=1.3")
+        .from(".btn-hero",     { y: 80, opacity: 0, scale: 0.85, duration: 1.4 }, "-=1.1");
+
+    // Gentle video parallax (desktop only)
+    if (window.innerWidth > 768) {
+        gsap.to(".video-wrap video", {
+            y: "6%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "+=50%",
+                scrub: 1.2,
+                invalidateOnRefresh: true
+            }
+        });
     }
 
+    // Refresh ScrollTrigger on resize
+    window.addEventListener('resize', () => ScrollTrigger.refresh());
 });
-
-/* ==========================================================================
-   UTIL
-   ========================================================================== */
-
-function throttle(fn, limit = 100) {
-    let waiting = false;
-    return function (...args) {
-        if (!waiting) {
-            fn.apply(this, args);
-            waiting = true;
-            setTimeout(() => (waiting = false), limit);
-        }
-    };
-}
