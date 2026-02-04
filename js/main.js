@@ -1,14 +1,11 @@
-// js/main.js
+// js/main.js – Improved mobile menu animation
 document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
-            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', !expanded);
-            menuToggle.querySelector('i').classList.toggle('fa-bars');
-            menuToggle.querySelector('i').classList.toggle('fa-times');
+            menuToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
     }
