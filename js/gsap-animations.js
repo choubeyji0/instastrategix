@@ -1,82 +1,50 @@
-gsap.registerPlugin(ScrollTrigger, TextPlugin);
+gsap.registerPlugin(ScrollTrigger, TextPlugin, SplitText);
 gsap.defaults({ ease: "none" });
 
-// Hero Reveal
-gsap.timeline()
-    .to(".hero-title", { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" })
-    .to(".hero-subtitle", { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, "-=0.8")
-    .to(".hero-description", { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, "-=0.8")
-    .to(".hero-buttons .btn", { opacity: 1, y: 0, stagger: 0.2, duration: 0.8 }, "-=0.6");
+// Hero Timeline
+const heroTL = gsap.timeline({
+    scrollTrigger: { trigger: ".hero", start: "top top", end: "+=500", pin: true, scrub: 1 }
+});
+heroTL
+    .from(".hero-title", { y: 200, opacity: 0, duration: 1.5 })
+    .from(".hero-subtitle", { y: 150, opacity: 0, duration: 1 }, "-=1")
+    .from(".hero-description", { y: 100, opacity: 0, duration: 1 }, "-=1")
+    .from(".hero-buttons .btn", { y: 80, opacity: 0, stagger: 0.3, duration: 1 }, "-=0.8");
 
-// Section Staggers
-document.querySelectorAll(".section-padding").forEach(section => {
-    gsap.from(section.children, {
-        scrollTrigger: { trigger: section, start: "top 80%", toggleActions: "play none none reverse" },
-        opacity: 0, y: 60, stagger: 0.2, duration: 1, ease: "power3.out"
-    });
+// Split Text
+const splitTitle = new SplitText(".hero-title", { type: "chars" });
+gsap.from(splitTitle.chars, { opacity: 0, y: 50, stagger: 0.05, duration: 0.8, ease: "back.out(1.7)" });
+
+// Pinned Sections
+document.querySelectorAll(".section-padding").forEach((section) => {
+    gsap.timeline({
+        scrollTrigger: { trigger: section, start: "top top", end: "+=100%", pin: true, scrub: 1 }
+    })
+    .from(section.querySelectorAll(".info-card, .service-card"), { y: 300, opacity: 0, rotation: -10, stagger: 0.2, duration: 1.5 })
+    .from(section.querySelector(".section-title"), { scale: 0.5, opacity: 0, duration: 1 }, "-=1");
 });
 
-// Card Hover
+// Card Hover Timeline
 document.querySelectorAll(".info-card, .service-card").forEach(card => {
-    const tl = gsap.timeline({ paused: true });
-    tl.to(card, { y: -20, scale: 1.05, boxShadow: "0 30px 60px rgba(120,110,87,0.3)", duration: 0.5 })
-      .to(card.querySelector(".card-icon, .service-icon i"), { scale: 1.25, rotation: 10, color: "#9b8a6b", duration: 0.5 }, 0);
-    card.addEventListener("mouseenter", () => tl.play());
-    card.addEventListener("mouseleave", () => tl.reverse());
+    const cardTL = gsap.timeline({ paused: true });
+    cardTL
+        .to(card, { y: -30, scale: 1.08, duration: 0.6 })
+        .to(card.querySelector(".card-icon, .service-icon i"), { scale: 1.4, rotation: 360, color: "#9b8a6b", duration: 0.8 }, "-=0.6")
+        .to(card, { boxShadow: "0 30px 60px rgba(120,110,87,0.4)", duration: 0.6 }, 0);
+    card.addEventListener("mouseenter", () => cardTL.play());
+    card.addEventListener("mouseleave", () => cardTL.reverse());
 });
 
-// Button Pulse
-gsap.to(".btn-primary", { boxShadow: "0 0 0 0 rgba(120,110,87,0.4)", repeat: -1, duration: 2, yoyo: true });
-
-// OPTIMIZED PARALLAX
+// Parallax (optimized)
 gsap.utils.toArray(".parallax-layer").forEach(layer => {
     const speed = layer.classList.contains("parallax-bg") ? 0.25 : 0.4;
-    gsap.to(layer, {
-        yPercent: speed * 100,
-        force3D: true,
-        scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: 0.5,
-            invalidateOnRefresh: true
-        }
-    });
+    gsap.to(layer, { yPercent: speed * 100, force3D: true, scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 0.5 } });
 });
 
-gsap.to("#particles-canvas", {
-    yPercent: -25,
-    force3D: true,
-    scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1, invalidateOnRefresh: true }
-});
-
-gsap.to(".hero-content", {
-    yPercent: -45,
-    force3D: true,
-    scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 0.8, invalidateOnRefresh: true }
-});
+gsap.to(".hero-content", { yPercent: -45, force3D: true, scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 0.8 } });
 
 ScrollTrigger.batch(".info-card, .service-card", {
-    onEnter: batch => gsap.to(batch, { yPercent: -25, force3D: true, duration: 1.2, ease: "power2.out", stagger: 0.1 }),
+    onEnter: batch => gsap.to(batch, { yPercent: -25, force3D: true, duration: 1.2, stagger: 0.1 }),
     onLeave: batch => gsap.to(batch, { yPercent: 0, force3D: true, duration: 0.8 }),
-    onEnterBack: batch => gsap.to(batch, { yPercent: -25, force3D: true, duration: 1 }),
-    onLeaveBack: batch => gsap.to(batch, { yPercent: 0, force3D: true, duration: 0.8 }),
-    start: "top 90%",
-    end: "bottom 10%",
-    scrub: 1,
-    invalidateOnRefresh: true
+    start: "top 90%", end: "bottom 10%", scrub: 1
 });
-
-document.querySelectorAll(".section-title").forEach(title => {
-    gsap.to(title, {
-        yPercent: -35,
-        force3D: true,
-        scrollTrigger: { trigger: title, start: "top bottom", end: "bottom top", scrub: 1 }
-    });
-});
-
-// Mobile guard
-if (window.innerWidth <= 768) {
-    ScrollTrigger.getAll().forEach(st => { if (st.vars.scrub) st.vars.scrub = 1.5; });
-    ScrollTrigger.refresh();
-}
