@@ -1,51 +1,61 @@
 // ============================================================================
-// Main JavaScript – Instastrategix (Premium Upgraded Version)
+// Main JavaScript – Instastrategix (Final Upgraded Version)
 // ============================================================================
 document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================================================
-       3D CINEMATIC FLOATING SILVER PARTICLES (Vanilla Canvas – Premium Effect)
+       UPGRADED SAND-LIKE FLOATING PARTICLES (Silver + Gold #786e57)
        ========================================================================== */
     const canvas = document.getElementById('particles-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
         const dpr = window.devicePixelRatio || 1;
         let logicalWidth, logicalHeight, cx, cy;
-
         const focalLength = 500;
-        const particleCount = 300;
-        const speed = 1.0;
+        const particleCount = 600;
+        const speed = 0.5;
         let particles = [];
 
         class Particle {
             constructor() {
+                this.vx = (Math.random() - 0.5) * 1;
+                this.vy = (Math.random() - 0.5) * 1;
+                this.sizeVariation = Math.random() * 0.6 + 0.8;
                 this.reset();
             }
             reset() {
-                this.x = (Math.random() - 0.5) * 1800;
-                this.y = (Math.random() - 0.5) * 1800;
-                this.z = Math.random() * 800 + 200;
-                this.baseSize = Math.random() * 1.2 + 0.5;
-                const shade = 200 + Math.floor(Math.random() * 55);
-                this.color = `rgb(${shade}, ${shade}, ${shade})`;
+                this.x = (Math.random() - 0.5) * 2000;
+                this.y = (Math.random() - 0.5) * 2000;
+                this.z = Math.random() * 1000 + 300;
+
+                if (Math.random() > 0.4) {
+                    const shade = 180 + Math.random() * 75;
+                    this.color = `rgb(${shade}, ${shade}, ${shade})`;
+                    this.glow = '#ffffff';
+                } else {
+                    const base = 100 + Math.random() * 100;
+                    this.color = `rgb(${base + 80}, ${base + 60}, ${base})`;
+                    this.glow = '#786e57';
+                }
+                this.baseSize = Math.random() * 2 + 0.5;
             }
             update() {
                 this.z -= speed;
-                if (this.z <= 10) {
-                    this.reset();
-                }
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.z <= 0) this.reset();
             }
             draw() {
                 const scale = focalLength / this.z;
                 const px = cx + this.x * scale;
                 const py = cy + this.y * scale;
-                const size = this.baseSize * scale * 4;
+                const size = this.baseSize * scale * 5 * this.sizeVariation;
 
                 if (px + size < 0 || px - size > logicalWidth || py + size < 0 || py - size > logicalHeight) return;
 
-                ctx.globalAlpha = Math.min(scale * 1.5, 1);
+                ctx.globalAlpha = Math.min(scale * 2, 1);
                 ctx.fillStyle = this.color;
-                ctx.shadowBlur = 25 * scale;
-                ctx.shadowColor = '#ffffff';
+                ctx.shadowBlur = 30 * scale;
+                ctx.shadowColor = this.glow;
                 ctx.beginPath();
                 ctx.arc(px, py, size, 0, Math.PI * 2);
                 ctx.fill();
@@ -64,23 +74,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const initParticles = () => {
             particles = [];
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
+            for (let i = 0; i < particleCount; i++) particles.push(new Particle());
         };
 
         const animate = () => {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, logicalWidth, logicalHeight);
-
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-
+            particles.forEach(p => { p.update(); p.draw(); });
             ctx.shadowBlur = 0;
             ctx.globalAlpha = 1;
-
             requestAnimationFrame(animate);
         };
 
@@ -100,15 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.target.classList.add('in-view');
             }
         });
-    }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-    });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
     animateElements.forEach(el => observer.observe(el));
 
-    /* Rest of your original main.js code (mobile nav, sticky header, etc.) remains unchanged */
-    // ... (all the other functions you had: menu toggle, sticky header, active link, footer year, smooth scroll, scroll to top, throttle)
+    // [Keep any other original code you had: menu toggle, sticky header, etc.]
 });
+
 /* ==========================================================================
    UTILITY: Throttle
    ========================================================================== */
