@@ -2,6 +2,12 @@
 @media (max-width: 768px) {
     .nav-container {
         position: relative;
+        flex-wrap: wrap; /* ADDED: allows CTA to go below */
+        justify-content: space-between;
+    }
+    .menu-toggle {
+        display: flex;
+        margin-left: auto; /* ADDED: pushes hamburger to right */
     }
     .nav-menu {
         position: absolute;
@@ -22,10 +28,8 @@
         opacity: 1;
         visibility: visible;
     }
-    .menu-toggle {
-        display: flex;
-    }
     .nav-cta {
+        width: 100%;
         margin-top: 1rem;
         text-align: center;
     }
