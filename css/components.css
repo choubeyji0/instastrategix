@@ -1,10 +1,16 @@
 /* css/components.css – Upgraded Header, Cards, Footer */
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* ADDED: base flex layout for header */
+}
+
 .site-header {
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.05); /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     transition: var(--transition);
@@ -33,7 +39,7 @@
 .logo img {
     height: 80px;
     transition: var(--transition);
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); /* Premium shadow */
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
 }
 .site-header.scrolled .logo img {
     height: 60px;
@@ -127,6 +133,17 @@
     transform: scale(1.05);
     box-shadow: var(--shadow-md);
 }
+
+/* Desktop nav grouping (nav links + CTA on the right) */
+@media (min-width: 769px) {
+    .nav-menu {
+        margin-left: auto; /* ADDED: pushes nav + CTA to right */
+    }
+    .nav-cta {
+        margin-left: var(--space-lg); /* ADDED: space between nav links and CTA */
+    }
+}
+
 /* Cards Upgraded */
 .info-card, .service-card {
     background: var(--bg-card);
