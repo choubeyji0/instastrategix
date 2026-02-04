@@ -79,7 +79,8 @@ h2 { font-size: clamp(2.8rem, 6vw, 4.5rem); }
     position: relative;
     z-index: 2;
     padding: var(--space-xxl) 0;
-    max-width: 1000px; /* Upgraded spacing */
+    max-width: 1000px;
+    margin: 0 auto; /* ADDED: centers hero content */
 }
 .hero-title {
     background: linear-gradient(135deg, #806e4d, #e0e0e0);
@@ -87,7 +88,7 @@ h2 { font-size: clamp(2.8rem, 6vw, 4.5rem); }
     background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: var(--space-sm);
-    letter-spacing: -0.02em; /* Premium kerning */
+    letter-spacing: -0.02em;
 }
 .hero-subtitle {
     font-size: 2.2rem;
@@ -101,13 +102,21 @@ h2 { font-size: clamp(2.8rem, 6vw, 4.5rem); }
     font-size: 1.3rem;
     color: var(--silver-light);
     opacity: 0.95;
-    line-height: 1.7; /* Better readability */
+    line-height: 1.7;
+}
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap; /* ADDED: proper button layout on desktop */
 }
 .section-padding {
-    padding: var(--space-xxl) 0; /* More breathing room */
+    padding: var(--space-xxl) 0;
 }
 .container {
-    max-width: 1200px; /* Wider for luxury */
+    max-width: 1200px;
+    margin: 0 auto;     /* ADDED: centers all containers */
+    padding: 0 1.5rem;  /* ADDED: consistent side gutters */
 }
 .intro-text {
     font-size: 1.2rem;
@@ -117,7 +126,7 @@ h2 { font-size: clamp(2.8rem, 6vw, 4.5rem); }
 .cards-grid, .services-grid, .proof-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-lg); /* Better card spacing */
+    gap: var(--space-lg);
 }
 .stat-item {
     text-align: center;
