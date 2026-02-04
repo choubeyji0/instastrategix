@@ -40,10 +40,13 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     
-    <!-- GSAP CDNs (removed SplitText to avoid club-only dependency issues; text reveal now handled via simple GSAP) -->
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    
+    <!-- Vanilla Tilt for 3D card effects -->
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
 </head>
 <body>
 <!-- ================= Header / Navigation ================= -->
@@ -72,7 +75,7 @@
 </header>
 
 <main>
-<!-- Hero Section with Advanced Interactive Particle Background -->
+<!-- Hero Section with Interactive Silver Particle Background on Black -->
 <section class="hero">
     <div class="particles-container">
         <canvas id="particles-canvas"></canvas>
@@ -91,7 +94,7 @@
     </div>
 </section>
 
-<!-- All original sections preserved with upgraded animations & effects -->
+<!-- Welcome Section with 3D Tilt Cards -->
 <section class="section-padding welcome-section">
     <div class="container">
         <div class="section-header text-center">
@@ -103,22 +106,22 @@
         </p>
         <h3 class="text-center section-subtitle">What We Do</h3>
         <div class="cards-grid">
-            <div class="info-card">
+            <div class="info-card" data-tilt>
                 <i class="fas fa-chart-line card-icon"></i>
                 <h4>Social Media Management</h4>
                 <p>Build a loyal audience, boost engagement, and grow your brand presence.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card" data-tilt>
                 <i class="fas fa-search card-icon"></i>
                 <h4>SEO & Website Optimization</h4>
                 <p>Rank higher, get discovered, and drive organic traffic.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card" data-tilt>
                 <i class="fas fa-bullseye card-icon"></i>
                 <h4>Google Ads & Paid Campaigns</h4>
                 <p>Reach the right audience, maximize ROI, and accelerate growth.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card" data-tilt>
                 <i class="fas fa-pen-nib card-icon"></i>
                 <h4>Content Marketing</h4>
                 <p>Compelling content that tells your brand story and converts visitors into customers.</p>
@@ -126,22 +129,22 @@
         </div>
         <h3 class="text-center section-subtitle">Why Choose InstaStrategix?</h3>
         <div class="cards-grid">
-            <div class="info-card">
+            <div class="info-card" data-tilt>
                 <i class="fas fa-chart-pie card-icon"></i>
                 <h4>Data-Driven Strategies</h4>
                 <p>Every decision backed by insights and analytics.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card" data-tilt>
                 <i class="fas fa-lightbulb card-icon"></i>
                 <h4>Creative Excellence</h4>
                 <p>Innovative campaigns that captivate your audience.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card" data-tilt>
                 <i class="fas fa-trophy card-icon"></i>
                 <h4>Proven Results</h4>
                 <p>Growth-focused strategies tailored to your brand.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card" data-tilt>
                 <i class="fas fa-handshake card-icon"></i>
                 <h4>Personalized Approach</h4>
                 <p>Your goals become our mission.</p>
@@ -162,7 +165,7 @@
             <p class="section-subtitle">Everything you need to build, grow, and scale your brand</p>
         </div>
         <div class="services-grid">
-            <article class="service-card">
+            <article class="service-card" data-tilt>
                 <div class="service-icon">
                     <i class="fas fa-palette"></i>
                 </div>
@@ -170,7 +173,7 @@
                 <p>Logos, creatives, and visual systems that build trust and recognition.</p>
                 <a href="services.html#graphic-design" class="btn-text">Learn More</a>
             </article>
-            <article class="service-card">
+            <article class="service-card" data-tilt>
                 <div class="service-icon">
                     <i class="fas fa-laptop-code"></i>
                 </div>
@@ -178,7 +181,7 @@
                 <p>Modern, responsive websites optimized for conversion and performance.</p>
                 <a href="services.html#web-design" class="btn-text">Learn More</a>
             </article>
-            <article class="service-card">
+            <article class="service-card" data-tilt>
                 <div class="service-icon">
                     <i class="fas fa-bullhorn"></i>
                 </div>
@@ -233,15 +236,13 @@
 </section>
 </main>
 
-<!-- Scroll to Top Button (new feature) -->
 <a href="#" class="scroll-to-top" aria-label="Scroll to top">
     <i class="fas fa-arrow-up"></i>
 </a>
 
-<!-- Footer (upgraded styling) -->
 <footer class="footer">
     <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style="display:block; width:100%; height:50px; position:absolute; top:0; left:0; z-index:1;">
-        <path d="M0,0 C600,100 600,0 1200,100 L1200,0 L0,0 Z" style="fill: #f8f8f8; opacity: 0.05;"></path>
+        <path d="M0,0 C600,100 600,0 1200,100 L1200,0 L0,0 Z" style="fill: #111; opacity: 0.1;"></path>
     </svg>
     <div class="footer-grid container">
         <div class="footer-col">
@@ -316,99 +317,107 @@
 <script src="js/main.js" defer></script>
 <script src="js/gsap-animations.js" defer></script>
 <script src="js/form-validation.js" defer></script>
-<script src="js/animations.js" defer></script>
 
-<!-- Advanced Interactive Particle Background (replaces broken Three.js system – lightweight, performant, mouse-interactive) -->
+<!-- Silver Interactive Particles + Character Split Animation -->
 <script>
-    const canvas = document.getElementById('particles-canvas');
-    const ctx = canvas.getContext('2d');
-    let particlesArray = [];
-    const mouse = { x: null, y: null, radius: 150 };
+// Particles – Silver on black hero
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let particlesArray = [];
+const mouse = { x: null, y: null, radius: 150 };
 
-    window.addEventListener('mousemove', (e) => {
-        mouse.x = e.x;
-        mouse.y = e.y;
-    });
+window.addEventListener('mousemove', (e) => {
+    mouse.x = e.x;
+    mouse.y = e.y;
+});
 
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 3 + 1;
-            this.speedX = Math.random() * 1.5 - 0.75;
-            this.speedY = Math.random() * 1.5 - 0.75;
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1 - 0.5;
+    }
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x + this.size > canvas.width || this.x - this.size < 0) this.speedX = -this.speedX;
+        if (this.y + this.size > canvas.height || this.y - this.size < 0) this.speedY = -this.speedY;
+
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < mouse.radius) {
+            this.size = Math.min(7, this.size + 0.6);
+        } else if (this.size > 2) {
+            this.size -= 0.1;
         }
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
+    }
+    draw() {
+        ctx.fillStyle = 'rgba(220, 220, 220, 0.95)'; // Silver
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
 
-            // Boundary bounce
-            if (this.x + this.size > canvas.width || this.x - this.size < 0) this.speedX = -this.speedX;
-            if (this.y + this.size > canvas.height || this.y - this.size < 0) this.speedY = -this.speedY;
+function init() {
+    particlesArray = [];
+    const numberOfParticles = (canvas.width * canvas.height) / 8000;
+    for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+    }
+}
 
-            // Mouse interaction (grow)
-            let dx = mouse.x - this.x;
-            let dy = mouse.y - this.y;
+function connect() {
+    for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+            let dx = particlesArray[a].x - particlesArray[b].x;
+            let dy = particlesArray[a].y - particlesArray[b].y;
             let distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < mouse.radius) {
-                this.size = Math.min(6, this.size + 0.5);
-            } else if (this.size > 2) {
-                this.size -= 0.1;
-            }
-        }
-        draw() {
-            ctx.fillStyle = 'rgba(155, 138, 107, 0.9)'; // Gold tone
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    function init() {
-        particlesArray = [];
-        const numberOfParticles = (canvas.width * canvas.height) / 9000;
-        for (let i = 0; i < numberOfParticles; i++) {
-            particlesArray.push(new Particle());
-        }
-    }
-
-    function connect() {
-        for (let a = 0; a < particlesArray.length; a++) {
-            for (let b = a; b < particlesArray.length; b++) {
-                let dx = particlesArray[a].x - particlesArray[b].x;
-                let dy = particlesArray[a].y - particlesArray[b].y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < 120) {
-                    ctx.strokeStyle = `rgba(155, 138, 107, ${1 - distance / 120})`;
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                    ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                    ctx.stroke();
-                }
+            if (distance < 130) {
+                ctx.strokeStyle = `rgba(200, 200, 200, ${1 - distance / 130})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                ctx.stroke();
             }
         }
     }
+}
 
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particlesArray.forEach(p => {
-            p.update();
-            p.draw();
-        });
-        connect();
-        requestAnimationFrame(animate);
-    }
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particlesArray.forEach(p => {
+        p.update();
+        p.draw();
+    });
+    connect();
+    requestAnimationFrame(animate);
+}
 
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = document.querySelector('.hero').offsetHeight;
-        init();
-    }
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = document.querySelector('.hero').offsetHeight;
+    init();
+}
 
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    animate();
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+animate();
+
+// Character split for premium text reveal
+function splitText() {
+    document.querySelectorAll('.hero-title, .section-title').forEach(el => {
+        const text = el.textContent.trim();
+        el.innerHTML = text.split('').map(char => 
+            `<span class="char" style="display:inline-block;">${char === ' ' ? '&nbsp;' : char}</span>`
+        ).join('');
+    });
+}
+splitText();
 </script>
 </body>
 </html>
