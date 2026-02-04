@@ -1,8 +1,8 @@
-/* css/components.css – Upgraded Header, Cards, Footer */
+/* css/components.css – Repaired: Reduced header size (no more "too large" or covering content) */
 .nav-container {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* ADDED: base flex layout for header */
+    justify-content: space-between;
 }
 
 .site-header {
@@ -14,13 +14,13 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     transition: var(--transition);
-    padding: 1.4rem 0;
+    padding: 1rem 0; /* REDUCED from 1.4rem → smaller header */
     border-bottom: 1px solid rgba(128,110,77,0.1);
 }
 .site-header.scrolled {
     background: rgba(255, 255, 255, 0.95);
     box-shadow: var(--shadow-lg);
-    padding: 1rem 0;
+    padding: 0.8rem 0; /* REDUCED further on scroll */
 }
 .header-border {
     height: 3px;
@@ -37,12 +37,12 @@
     gap: 12px;
 }
 .logo img {
-    height: 80px;
+    height: 65px; /* REDUCED from 80px → less tall */
     transition: var(--transition);
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
 }
 .site-header.scrolled .logo img {
-    height: 60px;
+    height: 50px; /* REDUCED from 60px */
 }
 .logo-text-wrapper {
     display: flex;
@@ -134,17 +134,17 @@
     box-shadow: var(--shadow-md);
 }
 
-/* Desktop nav grouping (nav links + CTA on the right) */
+/* Desktop nav grouping */
 @media (min-width: 769px) {
     .nav-menu {
-        margin-left: auto; /* ADDED: pushes nav + CTA to right */
+        margin-left: auto;
     }
     .nav-cta {
-        margin-left: var(--space-lg); /* ADDED: space between nav links and CTA */
+        margin-left: var(--space-lg);
     }
 }
 
-/* Cards Upgraded */
+/* Cards (unchanged except headings now highlighted via main.css) */
 .info-card, .service-card {
     background: var(--bg-card);
     padding: var(--space-lg);
@@ -185,11 +185,10 @@
     text-shadow: 0 0 20px var(--gold-glow);
 }
 .info-card h4, .service-card h3 {
-    font-size: 1.4rem;
     margin-bottom: var(--space-sm);
     color: var(--text-primary);
 }
-/* Buttons */
+/* Buttons (unchanged) */
 .btn {
     display: inline-block;
     padding: 1rem 2.5rem;
@@ -218,7 +217,7 @@
     background: var(--gold);
     color: #fff;
 }
-/* Footer Upgraded */
+/* Footer, Scroll to Top (unchanged) */
 .footer {
     background: linear-gradient(to bottom, #0f0f0f, #000);
     color: var(--silver-light);
@@ -345,7 +344,6 @@
     color: var(--silver);
     background: rgba(0,0,0,0.2);
 }
-/* Scroll to Top */
 .scroll-to-top {
     position: fixed;
     bottom: 2rem;
