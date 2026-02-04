@@ -1,42 +1,53 @@
-// Main JavaScript – Full Complete
-document.addEventListener('DOMContentLoaded', () => {
-
-    // SAND PARTICLE ANIMATION (Dark tones for light bg)
+    /* ==========================================================================
+       FINAL SAND DISPERSING ANIMATION (Small particles, black/silver/#786e57)
+       ========================================================================== */
     const canvas = document.getElementById('particles-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
         const dpr = window.devicePixelRatio || 1;
         let width, height;
-        const particles = [];
-        const burstSize = 80;
-        const burstInterval = 40;
-        let frameCount = 0;
+        const particleCount = 1200; // denser for fine sand look
+        let particles = [];
 
         class Particle {
-            constructor(x, y, vx, vy) {
-                this.x = x;
-                this.y = y;
-                this.vx = vx;
-                this.vy = vy;
-                this.life = 1;
-                this.decay = Math.random() * 0.008 + 0.006;
-                this.size = Math.random() * 0.7 + 0.3;
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                // Spawn mostly from left side for dispersing effect
+                this.x = Math.random() * width * 0.4 - width * 0.2; // left side
+                this.y = Math.random() * height;
+                this.vx = Math.random() * 3 + 2; // strong rightward wind
+                this.vy = Math.random() * 2 - 1; // slight up/down drift
+                this.life = 1; // opacity
+                this.decay = Math.random() * 0.01 + 0.005;
+                this.size = Math.random() * 1.5 + 0.5; // tiny particles
 
+                // Colors: silver, dark gray, gold #786e57 mix
                 const rand = Math.random();
                 if (rand < 0.4) {
-                    const shade = 30 + Math.random() * 60;
-                    this.color = `rgba(${shade}, ${shade}, ${shade}, 0.9)`;
+                    // Silver
+                    const shade = 180 + Math.random() * 75;
+                    this.color = `rgba(${shade}, ${shade}, ${shade}, 0.8)`;
+                } else if (rand < 0.7) {
+                    // Dark gray/black tones
+                    const shade = 50 + Math.random() * 80;
+                    this.color = `rgba(${shade}, ${shade}, ${shade}, 0.7)`;
                 } else {
-                    const base = 80 + Math.random() * 50;
-                    this.color = `rgba(${base + 70}, ${base + 50}, ${base}, 0.9)`;
+                    // Gold #786e57 tones
+                    const base = 80 + Math.random() * 60;
+                    this.color = `rgba(${base + 80}, ${base + 50}, ${base}, 0.8)`;
                 }
             }
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
-                this.vy += 0.03;
+                this.vy += 0.05; // gentle gravity fall
                 this.life -= this.decay;
-                this.vx += Math.sin(this.y * 0.01) * 0.05;
+
+                if (this.life <= 0 || this.x > width + 50) {
+                    this.reset();
+                }
             }
             draw() {
                 ctx.globalAlpha = this.life;
@@ -44,18 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
-            }
-        }
-
-        function createBurst() {
-            const centerX = width * 0.15;
-            const centerY = height * 0.5 + (Math.random() - 0.5) * height * 0.4;
-            for (let i = 0; i < burstSize; i++) {
-                const angle = Math.random() * Math.PI * 2;
-                const speed = Math.random() * 3 + 2;
-                const vx = Math.cos(angle) * speed + 3;
-                const vy = Math.sin(angle) * speed * 0.5;
-                particles.push(new Particle(centerX, centerY, vx, vy));
             }
         }
 
@@ -67,40 +66,25 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.scale(dpr, dpr);
         };
 
+        const init = () => {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        };
+
         const animate = () => {
-            ctx.fillStyle = 'rgba(240, 240, 240, 0.03)';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // subtle trails
             ctx.fillRect(0, 0, width, height);
-
-            frameCount++;
-            if (frameCount % burstInterval === 0) createBurst();
-
-            for (let i = particles.length - 1; i >= 0; i--) {
-                const p = particles[i];
+            particles.forEach(p => {
                 p.update();
                 p.draw();
-                if (p.life <= 0 || p.x > width + 50) particles.splice(i, 1);
-            }
-
+            });
             requestAnimationFrame(animate);
         };
 
         resize();
         window.addEventListener('resize', resize);
+        init();
         animate();
     }
-
-    // All original features (menu, sticky, etc.) preserved from previous versions
-    // ... (keep your original code for menu toggle, sticky header, etc. if any)
-});
-
-// Throttle utility
-function throttle(fn, limit = 100) {
-    let waiting = false;
-    return function (...args) {
-        if (!waiting) {
-            fn.apply(this, args);
-            waiting = true;
-            setTimeout(() => (waiting = false), limit);
-        }
-    };
-}
