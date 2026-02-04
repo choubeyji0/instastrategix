@@ -43,13 +43,12 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
-    <!-- Preload critical assets -->
-    <link rel="preload" href="images/instastrategix-logo.png" as="image">
-
-    <!-- GSAP CDN -->
+    <!-- GSAP + Three.js CDNs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
 <!-- ================= Header / Navigation ================= -->
@@ -78,13 +77,12 @@
 </header>
 
 <main>
-<!-- Hero Section -->
+<!-- Hero Section with 3D Particles -->
 <section class="hero">
     <!-- Parallax Layers -->
     <div class="parallax-layer parallax-bg"></div>
     <div class="parallax-layer parallax-mid"></div>
     
-    <canvas id="particles-canvas"></canvas>
     <div class="hero-overlay"></div>
     <div class="hero-content container text-center">
         <h1 class="hero-title">InstaStrategix - Premium Digital Marketing Agency in Bhilai</h1>
@@ -99,8 +97,7 @@
     </div>
 </section>
 
-<!-- All your original sections (Welcome, Services Preview, Social Proof, Blog) - unchanged -->
-<!-- Welcome / Features Section -->
+<!-- All original sections kept exactly -->
 <section class="section-padding welcome-section">
     <div class="container">
         <div class="section-header text-center">
@@ -164,7 +161,7 @@
     </div>
 </section>
 
-<!-- Services Preview -->
+<!-- Services Preview (original) -->
 <section class="services-preview section-padding">
     <div class="container">
         <div class="section-header text-center">
@@ -203,7 +200,7 @@
     </div>
 </section>
 
-<!-- Social Proof -->
+<!-- Social Proof (original) -->
 <section class="social-proof">
     <div class="container">
         <div class="proof-grid">
@@ -227,7 +224,7 @@
     </div>
 </section>
 
-<!-- Blog Section -->
+<!-- Blog Section (original) -->
 <section class="blog-integration section-padding">
     <div class="container blog-content">
         <h2 class="section-title">Learn Digital Marketing</h2>
@@ -245,31 +242,54 @@
 </section>
 </main>
 
-<!-- Footer (your original) -->
+<!-- Footer (original preserved) -->
 <footer class="footer">
-    <!-- Your full original footer code here -->
     <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style="display:block; width:100%; height:50px; position:absolute; top:0; left:0; z-index:1;">
         <path d="M0,0 C600,100 600,0 1200,100 L1200,0 L0,0 Z" style="fill: #111; opacity: 0.1;"></path>
     </svg>
     <div class="footer-grid container">
-        <!-- Your footer columns -->
         <div class="footer-col">
             <h4>Founder</h4>
             <p>Abhishek Choubey</p>
             <ul>
                 <li><i class="fas fa-envelope"></i> <a href="mailto:instastrategixdigitalcreator@gmail.com">instastrategixdigitalcreator@gmail.com</a></li>
-                <li><i class="fad fa-instagram"></i> <a href="https://www.instagram.com/instastrategix/" target="_blank">@instastrategix</a></li>
+                <li><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/instastrategix/" target="_blank">@instastrategix</a></li>
                 <li><i class="fas fa-blog"></i> <a href="https://instastrategix0.blogspot.com/" target="_blank">Digital Marketing Education</a></li>
             </ul>
         </div>
-        <!-- Other columns... (keep your original) -->
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="contact-us.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Connect With Us</h4>
+            <p>Follow us for tips, guides & updates!</p>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/instastrategix/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://instastrategix0.blogspot.com/" target="_blank"><i class="fas fa-blog"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Subscribe</h4>
+            <p>Get our latest marketing tips directly to your inbox:</p>
+            <form>
+                <input type="email" placeholder="Your email" required>
+                <button type="submit" class="btn-primary">Subscribe</button>
+            </form>
+        </div>
     </div>
     <div class="footer-bottom">
         &copy; <span id="current-year"></span> InstaStrategix. All rights reserved.
     </div>
 </footer>
 
-<!-- JSON-LD -->
+<!-- JSON-LD (original) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -298,6 +318,7 @@
 
 <!-- Scripts -->
 <script src="js/main.js" defer></script>
+<script src="js/three-particles.js" defer></script>
 <script src="js/gsap-animations.js" defer></script>
 <script src="js/form-validation.js" defer></script>
 <script src="js/animations.js" defer></script>
