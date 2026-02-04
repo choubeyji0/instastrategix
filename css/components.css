@@ -1,84 +1,63 @@
-/* ==========================================================================
-   COMPONENTS – Light Silver Premium Theme
-   ========================================================================== */
-
 /* Header */
 .site-header {
     background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
 }
-.nav-link {
-    color: var(--text-secondary);
-}
-.nav-link:hover, .nav-link.active {
-    color: var(--gold);
-}
-.nav-link::after { background: var(--gold); }
+.nav-link { color: var(--text-secondary); }
+.nav-link:hover, .nav-link.active { color: var(--gold); }
+.nav-link::after { background: var(--gold); height: 2px; }
 .nav-cta {
     background: var(--gold-gradient);
     color: #fff;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-lg);
 }
-.nav-cta:hover { box-shadow: 0 0 25px var(--gold-glow); }
 
 /* Buttons */
 .btn-primary {
     background: var(--gold-gradient);
     color: #fff;
-    padding: 1rem 2.5rem;
+    padding: 1rem 2.75rem;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
-    transition: all 0.4s ease;
-}
-.btn-primary:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 35px var(--gold-glow);
 }
 .btn-secondary {
     border: 2px solid var(--gold);
     color: var(--gold);
-}
-.btn-secondary:hover {
-    background: var(--gold);
-    color: #fff;
+    padding: 1rem 2.75rem;
 }
 
-/* Amazing Cards */
+/* Cards */
 .info-card, .service-card, .stat-item {
     background: var(--bg-card);
     border-radius: var(--radius-lg);
     padding: var(--space-xl);
     text-align: center;
     box-shadow: var(--shadow-md);
-    transition: all 0.5s ease;
-    border: 1px solid transparent;
+    border: 1px solid #e0e0e0;
+    position: relative;
+    overflow: hidden;
 }
-.info-card:hover, .service-card:hover, .stat-item:hover {
-    transform: translateY(-15px) scale(1.03);
-    box-shadow: 0 25px 50px var(--gold-glow);
-    border-color: var(--gold);
+.info-card::before, .service-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid transparent;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, transparent, var(--gold)) border-box;
+    opacity: 0;
+    transition: opacity 0.5s;
 }
+.info-card:hover::before, .service-card:hover::before { opacity: 1; }
 .card-icon, .service-icon i {
-    font-size: 4rem;
+    font-size: 4.5rem;
     color: var(--gold);
     margin-bottom: var(--space-lg);
-    transition: all 0.5s ease;
-}
-.info-card:hover .card-icon, .service-card:hover .service-icon i {
-    transform: scale(1.2) rotate(8deg);
-    color: var(--accent-light);
 }
 
 /* Social Proof */
-.stat-number {
-    font-size: 3.5rem;
-    color: var(--gold);
-    font-weight: 900;
-}
-
-/* Footer */
-.footer {
-    background: #1a1a1a;
-    color: #e0e0e0;
-}
-.footer a:hover { color: var(--gold); }
+.stat-number { font-size: 4rem; color: var(--gold); font-weight: 900; }
