@@ -1,0 +1,246 @@
+/* ==========================================================================
+   RESPONSIVE DESIGN â€“ MOBILE FIRST
+   ========================================================================== */
+
+/* =========================
+   TABLET (â‰¤1023px)
+   ========================= */
+@media (max-width: 1023px) {
+
+    .container {
+        padding: 0 var(--space-lg);
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.25rem;
+    }
+
+    /* Hero */
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--space-lg);
+        min-height: auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    /* Layout Grids */
+    .services-grid,
+    .expertise-grid,
+    .mission-grid,
+    .audience-grid,
+    .proof-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+}
+
+/* =========================
+   MOBILE (â‰¤767px)
+   ========================= */
+@media (max-width: 767px) {
+
+    :root {
+        --space-xl: 2rem;
+        --space-xxl: 3rem;
+    }
+
+    section {
+        padding: var(--space-xl) 0;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    /* =========================
+       MOBILE NAVIGATION
+       ========================= */
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        gap: var(--space-md);
+        padding: var(--space-lg);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-120%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-normal);
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+    }
+
+    /* =========================
+       HERO
+       ========================= */
+
+    .hero {
+        padding-top: 110px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.125rem;
+    }
+
+    /* =========================
+       CARDS & GRIDS
+       ========================= */
+
+    .services-grid,
+    .expertise-grid,
+    .mission-grid,
+    .audience-grid,
+    .proof-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+    .service-card,
+    .expertise-card,
+    .mission-card,
+    .audience-card,
+    .stat-item {
+        padding: var(--space-lg);
+    }
+
+    /* =========================
+       FOOTER
+       ========================= */
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    /* =========================
+       FORMS
+       ========================= */
+
+    .form-control {
+        font-size: 1rem;
+    }
+
+    /* =========================
+       PAGE-SPECIFIC
+       ========================= */
+
+    .founder-container {
+        text-align: center;
+    }
+
+    .founder-img-placeholder {
+        margin: 0 auto;
+    }
+}
+
+/* =========================
+   SMALL MOBILE (â‰¤480px)
+   ========================= */
+@media (max-width: 480px) {
+
+    .btn {
+        width: 100%;
+        padding: 0.75rem 1.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* =========================
+   LARGE DESKTOP (â‰¥1440px)
+   ========================= */
+@media (min-width: 1440px) {
+
+    .
+
+/* ================= MOBILE NAV ================= */
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #111827;
+}
+
+/* Mobile breakpoint */
+@media (max-width: 992px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        flex-direction: column;
+        gap: 0;
+        padding: 20px 0;
+        display: none;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu .nav-link {
+        padding: 12px 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-cta {
+        display: none; /* Hide CTA on mobile or move inside menu */
+    }
+}
