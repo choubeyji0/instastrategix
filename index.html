@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+  
     <!-- Primary Meta Tags -->
     <title>InstaStrategix | Premium Digital Marketing Agency in Bhilai, Chhattisgarh</title>
     <meta name="description" content="InstaStrategix is a premium digital marketing agency in Bhilai, Chhattisgarh, helping small businesses, coaches, and startups grow with expert branding, website design, SEO, social media marketing, and paid ads.">
@@ -28,33 +28,33 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-   
+  
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   
+  
     <!-- Styles -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/responsive.css">
-   
+  
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    
+   
     <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" defer></script>
+   
     <!-- Vanilla Tilt for 3D card effects -->
-    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js" defer></script>
 </head>
 <body>
-<!-- ================= Header / Navigation (Repaired & Upgraded) ================= -->
+<!-- ================= Header / Navigation (Upgraded: Glassmorphism + Smooth Anim) ================= -->
 <header class="site-header navbar">
     <div class="nav-container container">
         <div class="logo">
             <a href="index.html">
-                <img src="images/instastrategix-logo.png" alt="InstaStrategix Logo">
+                <img src="images/instastrategix-logo.png" alt="InstaStrategix Logo" loading="lazy">
                 <div class="logo-text-wrapper">
                     <span class="logo-text">InstaStrategix</span>
                     <span class="logo-tagline">Digital Marketing Agency</span>
@@ -78,9 +78,8 @@
     </div>
     <div class="header-border"></div>
 </header>
-
 <main>
-<!-- Hero Section (unchanged from previous premium version) -->
+<!-- Hero Section (unchanged + particles kept) -->
 <section class="hero">
     <div class="particles-container">
         <canvas id="particles-canvas"></canvas>
@@ -98,8 +97,7 @@
         </div>
     </div>
 </section>
-
-<!-- Rest of sections unchanged (cards with tilt, etc.) -->
+<!-- Welcome Section (Cards upgraded) -->
 <section class="section-padding welcome-section">
     <div class="container">
         <div class="section-header text-center">
@@ -162,7 +160,7 @@
         </div>
     </div>
 </section>
-
+<!-- Services Preview (Cards upgraded) -->
 <section class="services-preview section-padding">
     <div class="container">
         <div class="section-header text-center">
@@ -200,7 +198,7 @@
         </div>
     </div>
 </section>
-
+<!-- Social Proof (Stats upgraded) -->
 <section class="social-proof">
     <div class="container">
         <div class="proof-grid">
@@ -223,7 +221,7 @@
         </div>
     </div>
 </section>
-
+<!-- Blog Integration -->
 <section class="blog-integration section-padding">
     <div class="container blog-content">
         <h2 class="section-title">Learn Digital Marketing</h2>
@@ -240,12 +238,10 @@
     </div>
 </section>
 </main>
-
 <a href="#" class="scroll-to-top" aria-label="Scroll to top">
     <i class="fas fa-arrow-up"></i>
 </a>
-
-<!-- Footer (Repaired & Upgraded – more premium, better spacing, hover effects, modern wave) -->
+<!-- Footer (Upgraded: Wave + Premium Grid) -->
 <footer class="footer">
     <svg class="footer-wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
         <path d="M0,0 C480,100 960,20 1440,80 L1440,120 L0,120 Z" fill="rgba(128,110,77,0.08)"></path>
@@ -291,7 +287,6 @@
         &copy; <span id="current-year"></span> InstaStrategix. All rights reserved.
     </div>
 </footer>
-
 <!-- JSON-LD unchanged -->
 <script type="application/ld+json">
 {
@@ -318,24 +313,20 @@
   }
 }
 </script>
-
-<!-- Scripts unchanged except minor mobile menu fix -->
+<!-- Scripts -->
 <script src="js/main.js" defer></script>
 <script src="js/gsap-animations.js" defer></script>
-
-<!-- Particles + Text Split Script unchanged -->
+<!-- Original Particles + Text Split Script (kept exactly) -->
 <script>
-// Particles – Silver on black
+// Particles – Silver on black (original heavy version kept)
 const canvas = document.getElementById('particles-canvas');
 const ctx = canvas.getContext('2d');
 let particlesArray = [];
 const mouse = { x: null, y: null, radius: 150 };
-
 window.addEventListener('mousemove', (e) => {
     mouse.x = e.x;
     mouse.y = e.y;
 });
-
 class Particle {
     constructor() {
         this.x = Math.random() * canvas.width;
@@ -349,7 +340,6 @@ class Particle {
         this.y += this.speedY;
         if (this.x + this.size > canvas.width || this.x - this.size < 0) this.speedX = -this.speedX;
         if (this.y + this.size > canvas.height || this.y - this.size < 0) this.speedY = -this.speedY;
-
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
@@ -366,7 +356,6 @@ class Particle {
         ctx.fill();
     }
 }
-
 function init() {
     particlesArray = [];
     const numberOfParticles = (canvas.width * canvas.height) / 8000;
@@ -374,7 +363,6 @@ function init() {
         particlesArray.push(new Particle());
     }
 }
-
 function connect() {
     for (let a = 0; a < particlesArray.length; a++) {
         for (let b = a; b < particlesArray.length; b++) {
@@ -392,7 +380,6 @@ function connect() {
         }
     }
 }
-
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particlesArray.forEach(p => {
@@ -402,22 +389,19 @@ function animate() {
     connect();
     requestAnimationFrame(animate);
 }
-
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = document.querySelector('.hero').offsetHeight;
     init();
 }
-
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 animate();
-
 // Text split
 function splitText() {
     document.querySelectorAll('.hero-title, .section-title').forEach(el => {
         const text = el.textContent.trim();
-        el.innerHTML = text.split('').map(char => 
+        el.innerHTML = text.split('').map(char =>
             `<span class="char" style="display:inline-block;">${char === ' ' ? '&nbsp;' : char}</span>`
         ).join('');
     });
