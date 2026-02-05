@@ -1,15 +1,15 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
+::root {
     --bg-primary: #f8f8f8;
     --bg-card: #ffffff;
     --text-primary: #121212;
     --text-light: #f0f0f0;
-    --silver: #e9f1f2;
+    --silver: #d0d0d0;
     --silver-light: #e8e8e8;
-    --gold: #d4af7b;
-    --gold-light: #1290a3;
-    --gold-gradient: linear-gradient(135deg, #a67c52, #d8d8d8);
-    --gold-glow: rgba(166,124,82,0.3);
+    --accent: #888888;          /* new main silver */
+    --accent-light: #cccccc;     /* lighter silver */
+    --accent-gradient: linear-gradient(135deg, #777777, #dddddd);
+    --accent-glow: rgba(200, 200, 200, 0.3);
     --font-primary: 'Inter', sans-serif;
     --font-secondary: 'Poppins', sans-serif;
     --space-xs: 0.75rem;
