@@ -23,21 +23,20 @@
         transition: var(--transition);
     }
     .nav-menu.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-    }
-    .nav-link {
-        font-size: 1.25rem;
-        padding: 1rem 1.6rem;
-    }
-    .nav-cta {
-        width: 100%;
-        margin-top: 1rem;
-        text-align: center;
-        padding: 1.4rem 3.5rem;
-        font-size: 1.1rem;
-    }
+    align-items: center;          /* centers links horizontally */
+    text-align: center;
+}
+.nav-menu.active .nav-link {
+    padding: 1.5rem 2rem;         /* larger touch targets */
+    font-size: 1.2rem;
+    width: 100%;
+    border-radius: var(--radius-md);
+}
+.nav-cta {
+    width: 90%;
+    max-width: 400px;
+    margin: 1rem auto 0;
+}
     .hero-content {
         padding: var(--space-xl) var(--space-md);
     }
