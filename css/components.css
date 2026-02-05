@@ -83,9 +83,20 @@
     display: flex;
     gap: 3.5rem;
     align-items: center;
-    flex: 1;                   /* NEW: takes available space */
-    justify-content: center;   /* NEW: centers links on desktop */
+    flex: 1;
+    justify-content: center;   /* links centered */
+    margin-left: 0 !important;
 }
+
+.site-header.scrolled {
+    padding: 0.2rem 0;         /* very slim now */
+    background: rgba(255, 255, 255, 0.98);
+}
+.site-header.scrolled .logo img { height: 32px; }
+.site-header.scrolled .logo-text { font-size: 1.5rem; }
+.site-header.scrolled .logo-tagline { font-size: 0.85rem; }
+.site-header.scrolled .nav-link { font-size: 0.95rem; padding: 0.4rem 0.9rem; }
+.site-header.scrolled .nav-cta { padding: 0.7rem 2.2rem; font-size: 0.95rem; }
 .nav-link {
     color: #fff;
     font-weight: 700;
