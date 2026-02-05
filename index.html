@@ -42,6 +42,27 @@
     <!-- Vanilla Tilt for 3D card effects -->
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js" defer></script>
 </head>
+<!-- ================= Basic Chatbot ================= -->
+<div class="chatbot-container">
+    <button class="chatbot-toggle" aria-label="Open chat">
+        <i class="fas fa-comment-dots"></i>
+    </button>
+    <div class="chatbot-window">
+        <div class="chat-header">
+            Instastrategix Assistant
+            <button class="close-chat" aria-label="Close chat">×</button>
+        </div>
+        <div class="chat-messages"></div>
+        <div class="chat-input">
+            <input type="text" placeholder="Type your message..." aria-label="Message input">
+            <button aria-label="Send message">Send</button>
+        </div>
+    </div>
+</div>
+
+<!-- Link the new chatbot script -->
+<script src="js/chatbot.js" defer></script>
+    
 <body>
 <!-- ================= Updated Header (Slimmer on scroll, removed tagline) ================= -->
 <header class="site-header navbar">
