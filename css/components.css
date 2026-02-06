@@ -712,3 +712,53 @@
 .swiper-pagination-bullet-active {
     background: var(--gold);
 }
+
+/* Simple Marketing Slideshow */
+.marketing-showcase {
+    padding: 4rem 0;
+}
+
+.simple-marketing-slider {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.slide {
+    display: none;
+    width: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.slide.active {
+    display: block;
+}
+
+/* Dots */
+.slider-dots {
+    margin-top: 1.5rem;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 8px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+.dot.active,
+.dot:hover {
+    background-color: var(--gold);
+}
