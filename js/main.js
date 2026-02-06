@@ -56,3 +56,30 @@ const testimonialSwiper = new Swiper('.testimonials-swiper', {
     slidesPerView: 1,
     spaceBetween: 30,
 });
+
+// Simple 3-image marketing slider
+let currentSlide = 0;
+const slides = document.querySelectorAll('.simple-marketing-slider .slide');
+const dots = document.querySelectorAll('.slider-dots .dot');
+
+function showSlide(index) {
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+}
+
+function changeSlide(index) {
+    currentSlide = index;
+    showSlide(currentSlide);
+}
+
+// Auto slide every 5 seconds
+setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}, 5000);
+
+// Show first slide initially
+showSlide(0);
