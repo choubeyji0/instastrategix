@@ -646,3 +646,28 @@
     }
     .quick-replies { padding: 12px; }
 }
+
+.testimonial-quote {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+}
+.client-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+.client-info img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.client-info h4 {
+    margin: 0;
+    background: none;
+    -webkit-text-fill-color: initial;
+    color: var(--gold);
+}
