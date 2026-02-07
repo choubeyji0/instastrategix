@@ -718,44 +718,70 @@
     padding: 4rem 0;
 }
 
+/* Simple Marketing Slideshow */
 .simple-marketing-slider {
-    position: relative;
+    position: relative;                  /* Needed for absolute dots */
     max-width: 1000px;
     margin: 0 auto;
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    height: 550px;                        /* Adjust this (e.g., 450px–650px) to make the section smaller/taller */
 }
 
+/* Make all slides fill the fixed height */
 .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: none;
-    width: 100%;
-}
-
-.slide img {
-    width: 100%;
-    height: auto;
-    display: block;
 }
 
 .slide.active {
     display: block;
 }
 
-/* Dots */
-.slider-dots {
-    margin-top: 1.5rem;
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;                   /* Crops to fill nicely, keeps focus center */
+    object-position: center;
+    display: block;
 }
 
+/* Overlay dots at bottom center */
+.slider-dots {
+    position: absolute;
+    bottom: 30px;                        /* Distance from bottom */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    margin-top: 0;                       /* Remove the old margin */
+}
+
+/* Optional: make dots more visible on dark images */
 .dot {
     height: 12px;
     width: 12px;
     margin: 0 8px;
-    background-color: #bbb;
+    background-color: rgba(255, 255, 255, 0.6);  /* Semi-transparent white */
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
     transition: background-color 0.4s;
+}
+
+.dot.active,
+.dot:hover {
+    background-color: var(--gold);
+}
+
+/* Reduce overall section height */
+.marketing-showcase {
+    padding: 2.5rem 0;                   /* Was 4rem — makes the whole section shorter */
 }
 
 .dot.active,
