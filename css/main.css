@@ -326,3 +326,38 @@ h1, h2, h3, h4 { font-family: var(--font-secondary); font-weight: 800; line-heig
     font-size: 1.5rem;
     margin-bottom: var(--space-sm);
 }
+
+/* Minimal visibility fixes – add only these lines */
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.68) !important; /* Slightly darker uniform overlay – dims particles more */
+}
+
+.hero-content,
+.hero-content * {
+    color: #fff !important; /* Force bright white base */
+}
+
+.hero-description {
+    opacity: 1 !important;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.9) !important; /* Strong readable shadow */
+}
+
+.highlight-text {
+    color: #ffd700 !important;
+    text-shadow: 0 0 25px rgba(255,215,0,0.8), 0 4px 15px rgba(0,0,0,0.9) !important;
+}
+
+.hero-title {
+    -webkit-text-stroke: 1.5px rgba(0,0,0,0.9) !important; /* Thicker dark outline for sharp edges */
+    text-shadow: 
+        -2px -2px 0 #000,
+         2px -2px 0 #000,
+        -2px  2px 0 #000,
+         2px  2px 0 #000,
+         0 5px 15px rgba(0,0,0,0.9),
+         0 10px 30px rgba(0,0,0,0.7) !important;
+}
+
+.hero-subtitle {
+    text-shadow: 0 4px 20px rgba(0,0,0,0.9) !important;
+}
