@@ -261,3 +261,55 @@ h1, h2, h3, h4 {
     margin-bottom: var(--space-sm);
     -webkit-font-smoothing: antialiased;
 }
+
+/* Force sharp rendering + GPU acceleration for animated chars */
+.hero-title .char,
+.section-title .char {
+    display: inline-block !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* Apply gradient + sharp black outline directly to each char (no blur radius) */
+.hero-title .char {
+    background: linear-gradient(135deg, #ffffff, #b39b7a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-title .char {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Sharp outline on chars – zero blur, pure crisp */
+.hero-title .char,
+.section-title .char {
+    text-shadow: 
+        2px 2px 0 rgba(0,0,0,0.9),
+        -2px -2px 0 rgba(0,0,0,0.9),
+        2px -2px 0 rgba(0,0,0,0.9),
+        -2px 2px 0 rgba(0,0,0,0.9),
+        0 2px 0 rgba(0,0,0,0.9),
+        0 -2px 0 rgba(0,0,0,0.9),
+        2px 0 0 rgba(0,0,0,0.9),
+        -2px 0 0 rgba(0,0,0,0.9);
+}
+
+/* Override old heavy blur shadow + parent gradient to avoid conflict/double effect */
+.hero-title,
+.section-title {
+    background: none !important;
+    text-shadow: none !important;
+}
+
+/* Extra for hero-subtitle if it feels slightly off */
+.hero-subtitle {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
