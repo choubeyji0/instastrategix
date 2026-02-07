@@ -288,17 +288,16 @@ h1, h2, h3, h4 {
 }
 
 /* Thinner + lighter crisp outline for animated chars */
-.hero-title .char,
-.section-title .char {
-    text-shadow: 
-        1px 1px 0 rgba(0,0,0,0.7),
-        -1px -1px 0 rgba(0,0,0,0.7),
-        1px -1px 0 rgba(0,0,0,0.7),
-        -1px 1px 0 rgba(0,0,0,0.7),
-        0 1px 0 rgba(0,0,0,0.7),
-        0 -1px 0 rgba(0,0,0,0.7),
-        1px 0 0 rgba(0,0,0,0.7),
-        -1px 0 0 rgba(0,0,0,0.7);
+.hero-title .char {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    color: #bfbfbd; /* ya jo color chahte ho, jaise #ffffff for white */
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.7),
+                -1px -1px 0 rgba(0,0,0,0.7),
+                1px -1px 0 rgba(0,0,0,0.7),
+                -1px 1px 0 rgba(0,0,0,0.7);
 }
 
 /* Hero subtitle ko bhi same thinner outline (agar pehle heavy tha) */
