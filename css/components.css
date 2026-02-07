@@ -1,11 +1,24 @@
+/* General resets */
+* {
+    box-sizing: border-box;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.container {
+    padding: 0 15px;
+    max-width: 100%;
+}
+
+/* Header & Navigation */
 .nav-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
 }
-
-/* Upgraded header – taller at top, much slimmer on scroll */
 .site-header {
     position: fixed;
     width: 100%;
@@ -19,13 +32,11 @@
     border-bottom: 1px solid rgba(255,255,255,0.15);
     box-shadow: 0 10px 40px rgba(0,0,0,0.12);
 }
-
 .site-header.scrolled {
     padding: 0.5rem 0;
     background: rgba(255, 255, 255, 0.99);
     box-shadow: 0 12px 50px rgba(0,0,0,0.18);
 }
-
 .header-border {
     height: 4px;
     background: var(--gold-gradient);
@@ -33,27 +44,22 @@
     transition: width 1s ease;
     box-shadow: 0 0 15px var(--gold-glow);
 }
-
 .site-header.scrolled .header-border {
     width: 100%;
 }
-
 .logo {
     display: flex;
     align-items: center;
     gap: 15px;
 }
-
 .logo img {
     height: 60px;
     transition: var(--transition);
     filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
 }
-
 .site-header.scrolled .logo img {
     height: 40px;
 }
-
 .logo-text {
     font-size: 2.2rem;
     font-weight: 900;
@@ -64,7 +70,6 @@
     transition: var(--transition);
     text-shadow: 0 2px 10px rgba(0,0,0,0.8);
 }
-
 .site-header.scrolled .logo-text {
     font-size: 1.8rem;
     background: var(--gold-gradient);
@@ -73,7 +78,6 @@
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 15px var(--gold-glow);
 }
-
 .nav-menu {
     display: flex;
     gap: 3.5rem;
@@ -170,6 +174,7 @@
     box-shadow: 0 20px 50px var(--gold-glow);
 }
 
+/* Desktop-specific reinforcement */
 @media (min-width: 769px) {
     .nav-menu {
         margin-left: auto;
@@ -177,9 +182,182 @@
     .nav-cta {
         margin-left: var(--space-lg);
     }
+    .menu-toggle {
+        display: none;
+    }
+    .nav-menu {
+        position: static;
+        width: auto;
+        height: auto;
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+    }
 }
 
-/* Cards, buttons, etc. (unchanged) */
+/* Mobile-only menu styles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 2px 0 15px rgba(0,0,0,0.3);
+        transition: left 0.4s ease;
+        overflow-y: auto;
+        z-index: 9999;
+        padding: 100px 30px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: flex-start;
+    }
+    .nav-menu.active {
+        left: 0;
+    }
+    .nav-menu .nav-link {
+        display: block;
+        padding: 16px 0;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #333;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+    }
+    .nav-menu .nav-link:hover,
+    .nav-menu .nav-link.active {
+        color: var(--gold);
+    }
+    .nav-cta {
+        margin-top: 2rem;
+        align-self: flex-start;
+    }
+    body.menu-open::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6);
+        z-index: 9998;
+        display: block;
+    }
+    .site-header {
+        padding: 10px 0;
+    }
+}
+
+/* Marketing Slider */
+.marketing-showcase {
+    padding: 2rem 0;
+    background: #f8f9fa;
+}
+.simple-marketing-slider {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    height: 450px;
+}
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.slide.active {
+    display: block;
+}
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    background: #f8f9fa;
+    display: block;
+}
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    text-align: center;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 8px 20px;
+    border-radius: 30px;
+    display: inline-block;
+}
+.dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 8px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.4s;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+.dot.active,
+.dot:hover {
+    background-color: var(--gold);
+    transform: scale(1.2);
+}
+
+/* Mobile adjustments for slider */
+@media (max-width: 768px) {
+    .simple-marketing-slider {
+        max-width: 100%;
+        height: 320px;
+        border-radius: 8px;
+    }
+    .slider-dots {
+        bottom: 15px;
+        padding: 6px 16px;
+    }
+    .dot {
+        height: 10px;
+        width: 10px;
+        margin: 0 6px;
+    }
+    .marketing-showcase {
+        padding: 1.5rem 0;
+    }
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+}
+@media (max-width: 480px) {
+    .simple-marketing-slider {
+        height: 280px;
+    }
+}
+
+/* Swiper arrows & pagination */
+.swiper-button-next, .swiper-button-prev {
+    color: var(--gold);
+}
+.swiper-pagination-bullet-active {
+    background: var(--gold);
+}
+
+/* Cards, buttons, testimonials, footer, chatbot, scroll-to-top – all unchanged */
 .info-card, .service-card {
     background: var(--bg-card);
     padding: var(--space-lg);
@@ -251,8 +429,62 @@
     background: var(--gold);
     color: #fff;
 }
-
-/* Upgraded footer */
+.testimonials-swiper {
+    padding: 2rem 0;
+    overflow: hidden;
+}
+.testimonial-card {
+    background: white;
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    max-width: 800px;
+    margin: 0 auto;
+}
+.quote-icon {
+    font-size: 3rem;
+    color: var(--gold);
+    margin-bottom: var(--space-md);
+    opacity: 0.3;
+}
+.testimonial-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    margin-bottom: var(--space-md);
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+.stars {
+    color: var(--gold);
+    font-size: 1.5rem;
+    margin-bottom: var(--space-md);
+    letter-spacing: 5px;
+}
+.client-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+.client-info img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--gold);
+}
+.client-info h4 {
+    margin: 0;
+    background: none;
+    color: var(--gold);
+    font-size: 1.3rem;
+}
+.client-info span {
+    font-size: 1rem;
+    color: var(--silver);
+}
 .footer {
     background: linear-gradient(to bottom, #0a0a0a, #000);
     color: var(--silver-light);
@@ -402,7 +634,6 @@
     transform: translateY(-5px);
     box-shadow: 0 25px 60px var(--gold-glow);
 }
-
 @media (min-width: 769px) {
     .subscribe-form {
         flex-direction: row;
@@ -417,7 +648,6 @@
         padding: 1.6rem 2.5rem;
     }
 }
-
 .footer-bottom {
     text-align: center;
     padding: var(--space-xl) 0;
@@ -455,8 +685,6 @@
     transform: scale(1.2);
     box-shadow: 0 25px 60px var(--gold-glow);
 }
-
-/* ================= Enhanced Chatbot Styles ================= */
 .chatbot-container {
     position: fixed;
     bottom: 30px;
@@ -464,7 +692,6 @@
     z-index: 1001;
     font-family: var(--font-primary);
 }
-
 .chatbot-toggle {
     background: var(--gold-gradient);
     color: white;
@@ -477,11 +704,9 @@
     box-shadow: 0 15px 40px var(--gold-glow);
     transition: var(--transition);
 }
-
 .chatbot-toggle:hover {
     transform: scale(1.1);
 }
-
 .chatbot-window {
     display: none;
     flex-direction: column;
@@ -495,11 +720,9 @@
     right: 0;
     overflow: hidden;
 }
-
 .chatbot-window.open {
     display: flex;
 }
-
 .chat-header {
     background: var(--gold-gradient);
     color: white;
@@ -510,7 +733,6 @@
     justify-content: space-between;
     align-items: center;
 }
-
 .close-chat {
     background: none;
     border: none;
@@ -519,7 +741,6 @@
     cursor: pointer;
     line-height: 1;
 }
-
 .chat-messages {
     flex: 1;
     padding: 20px;
@@ -529,7 +750,6 @@
     gap: 12px;
     background: #f9f9f9;
 }
-
 .message {
     max-width: 80%;
     padding: 12px 18px;
@@ -538,26 +758,22 @@
     word-wrap: break-word;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
-
 .message.user {
     align-self: flex-end;
     background: var(--gold-light);
     color: white;
 }
-
 .message.bot {
     align-self: flex-start;
     background: white;
     border: 1px solid #eee;
     color: var(--text-primary);
 }
-
 .message a {
     color: var(--gold);
     text-decoration: underline;
     font-weight: 600;
 }
-
 .typing span {
     display: inline-block;
     width: 8px;
@@ -567,15 +783,12 @@
     margin: 0 3px;
     animation: typing 1.4s infinite;
 }
-
 .typing span:nth-child(2) { animation-delay: 0.2s; }
 .typing span:nth-child(3) { animation-delay: 0.4s; }
-
 @keyframes typing {
     0%, 60%, 100% { transform: translateY(0); }
     30% { transform: translateY(-10px); }
 }
-
 .quick-replies {
     display: flex;
     flex-wrap: wrap;
@@ -585,7 +798,6 @@
     max-height: 120px;
     overflow-y: auto;
 }
-
 .quick-reply {
     background: white;
     border: 1px solid var(--gold);
@@ -597,19 +809,16 @@
     transition: var(--transition);
     white-space: nowrap;
 }
-
 .quick-reply:hover {
     background: var(--gold);
     color: white;
 }
-
 .chat-input {
     display: flex;
     padding: 12px;
     background: white;
     border-top: 1px solid #eee;
 }
-
 .chat-input input {
     flex: 1;
     padding: 12px 16px;
@@ -617,7 +826,6 @@
     border-radius: 30px;
     font-size: 1rem;
 }
-
 .chat-input button {
     background: var(--gold-gradient);
     color: white;
@@ -629,283 +837,18 @@
     cursor: pointer;
     font-size: 18px;
 }
-
-/* General Mobile Fixes */
-* {
-    box-sizing: border-box;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-.container {
-    padding: 0 15px;
-    max-width: 100%;
-}
-
-/* Make header/menu area cleaner on mobile */
-.site-header {
-    padding: 15px 0;
-}
-
-/* Mobile Menu – Full fix for visibility and slide-in */
-.nav-menu {
-    position: fixed;
-    top: 0;
-    left: -100%;                     /* Hidden by default */
-    width: 80%;
-    max-width: 300px;
-    height: 100vh;
-    background: #fff;                /* Or your header bg */
-    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-    transition: left 0.4s ease;
-    overflow-y: auto;
-    z-index: 9999;
-    padding: 100px 30px 30px;        /* Space for logo/header */
-    display: flex;
-    flex-direction: column;
-}
-
-.nav-menu.active {
-    left: 0;                         /* Slide in when toggled */
-}
-
-/* Make nav links visible and stacked on mobile */
-.nav-menu .nav-link {
-    display: block;
-    padding: 12px 0;
-    font-size: 18px;
-    color: #333;                     /* Make sure text is visible */
-    border-bottom: 1px solid #eee;
-}
-
-.nav-menu .nav-link:hover {
-    color: var(--gold);
-}
-
-/* Optional: Dark overlay when menu open */
-body.menu-open::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 9998;
-    display: none;
-}
-
-body.menu-open::before {
-    display: block;
-}
-
-/* Add this small JS tweak for body class (add to your main.js inside the toggle event) */
-menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    navMenu.classList.toggle('active');
-    document.body.classList.toggle('menu-open');  /* Add this line */
-});
-
-/* Marketing Slider – Smaller & fully responsive on mobile */
-.simple-marketing-slider {
-    position: relative;
-    max-width: 100%;                 /* Full width on mobile */
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    height: 450px;                   /* Desktop medium size */
-}
-
-/* Mobile-specific for slider */
-@media (max-width: 768px) {
-    .simple-marketing-slider {
-        height: 320px;               /* Much smaller on mobile – adjust if needed (280px–350px) */
-        border-radius: 8px;
-    }
-    
-    .slider-dots {
-        bottom: 15px;                /* Closer to edge */
-        padding: 6px 16px;
-    }
-    
-    .dot {
-        height: 10px;
-        width: 10px;
-        margin: 0 6px;
-    }
-    
-    .marketing-showcase {
-        padding: 1.5rem 0;           /* Less vertical space */
-    }
-    
-    .section-title {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-    }
-}
-
 @media (max-width: 480px) {
-    .simple-marketing-slider {
-        height: 280px;               /* Even smaller on small phones */
+    .chatbot-container { bottom: 20px; right: 20px; }
+    .chatbot-window {
+        width: 100%;
+        height: 100%;
+        max-width: 380px;
+        max-height: 620px;
+        bottom: 85px;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        border-radius: 18px 18px 0 0;
     }
-    
-    .site-header {
-        padding: 10px 0;
-    }
-    
-    .menu-toggle {
-        width: 30px;
-        height: 30px;
-    }
-}
-/* Testimonial Slideshow Styles */
-.testimonials-swiper {
-    padding: 2rem 0;
-    overflow: hidden;
-}
-.testimonial-card {
-    background: white;
-    padding: var(--space-lg);
-    border-radius: var(--radius-lg);
-    text-align: center;
-    box-shadow: var(--shadow-md);
-    max-width: 800px;
-    margin: 0 auto;
-}
-.quote-icon {
-    font-size: 3rem;
-    color: var(--gold);
-    margin-bottom: var(--space-md);
-    opacity: 0.3;
-}
-.testimonial-quote {
-    font-size: 1.3rem;
-    font-style: italic;
-    margin-bottom: var(--space-md);
-    line-height: 1.8;
-    color: var(--text-primary);
-}
-.stars {
-    color: var(--gold);
-    font-size: 1.5rem;
-    margin-bottom: var(--space-md);
-    letter-spacing: 5px;
-}
-.client-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-md);
-    margin-top: var(--space-lg);
-}
-.client-info img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--gold);
-}
-.client-info h4 {
-    margin: 0;
-    background: none;
-    color: var(--gold);
-    font-size: 1.3rem;
-}
-.client-info span {
-    font-size: 1rem;
-    color: var(--silver);
-}
-
-/* Swiper arrows & pagination */
-.swiper-button-next, .swiper-button-prev {
-    color: var(--gold);
-}
-.swiper-pagination-bullet-active {
-    background: var(--gold);
-}
-
-/* Simple Marketing Slideshow */
-.marketing-showcase {
-    padding: 4rem 0;
-}
-
-/* Simple Marketing Slideshow */
-.simple-marketing-slider {
-    position: relative;
-    max-width: 900px;                    /* Reduced from 1000px for medium size */
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    height: 450px;                       /* Medium height — adjust if needed (400px for smaller, 500px for bigger) */
-}
-
-/* Stack slides for consistent height */
-.slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-}
-
-.slide.active {
-    display: block;
-}
-
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;                 /* Shows FULL image, no cropping */
-    object-position: center;
-    background: #f8f9fa;                 /* Matches section bg for letterbox areas */
-    display: block;
-}
-
-/* Dots overlay with better visibility and centering */
-.slider-dots {
-    position: absolute;
-    bottom: 20px;                        /* Closer to bottom for compact look */
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
-    text-align: center;
-    z-index: 10;
-    background: rgba(0, 0, 0, 0.4);      /* Semi-dark strip behind dots for contrast */
-    padding: 8px 20px;
-    border-radius: 30px;
-    display: inline-block;
-}
-
-.dot {
-    height: 12px;
-    width: 12px;
-    margin: 0 8px;
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-    transition: all 0.4s;
-    box-shadow: 0 0 4px rgba(0,0,0,0.3); /* Slight shadow for pop */
-}
-
-.dot.active,
-.dot:hover {
-    background-color: var(--gold);
-    transform: scale(1.2);
-}
-
-/* Make whole section more compact */
-.marketing-showcase {
-    padding: 2rem 0;                     /* Even tighter than before */
-}
-
-.section-title {
-    margin-bottom: 1.5rem;               /* Less space above slider */
+    .quick-replies { padding: 12px; }
 }
