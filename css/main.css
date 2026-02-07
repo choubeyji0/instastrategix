@@ -293,11 +293,8 @@ h1, h2, h3, h4 {
     -webkit-background-clip: unset !important;
     background-clip: unset !important;
     -webkit-text-fill-color: unset !important;
-    color: #bfbfbd; /* ya jo color chahte ho, jaise #ffffff for white */
-    text-shadow: 1px 1px 0 rgba(0,0,0,0.7),
-                -1px -1px 0 rgba(0,0,0,0.7),
-                1px -1px 0 rgba(0,0,0,0.7),
-                -1px 1px 0 rgba(0,0,0,0.7);
+    color: #ffffff !important;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.7), ... /* same shadow */
 }
 
 /* Hero subtitle ko bhi same thinner outline (agar pehle heavy tha) */
