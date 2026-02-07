@@ -720,16 +720,16 @@
 
 /* Simple Marketing Slideshow */
 .simple-marketing-slider {
-    position: relative;                  /* Needed for absolute dots */
-    max-width: 1000px;
+    position: relative;
+    max-width: 900px;                    /* Reduced from 1000px for medium size */
     margin: 0 auto;
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    height: 550px;                        /* Adjust this (e.g., 450px–650px) to make the section smaller/taller */
+    height: 450px;                       /* Medium height — adjust if needed (400px for smaller, 500px for bigger) */
 }
 
-/* Make all slides fill the fixed height */
+/* Stack slides for consistent height */
 .slide {
     position: absolute;
     top: 0;
@@ -746,45 +746,50 @@
 .slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;                   /* Crops to fill nicely, keeps focus center */
+    object-fit: contain;                 /* Shows FULL image, no cropping */
     object-position: center;
+    background: #f8f9fa;                 /* Matches section bg for letterbox areas */
     display: block;
 }
 
-/* Overlay dots at bottom center */
+/* Dots overlay with better visibility and centering */
 .slider-dots {
     position: absolute;
-    bottom: 30px;                        /* Distance from bottom */
-    left: 0;
-    width: 100%;
+    bottom: 20px;                        /* Closer to bottom for compact look */
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
     text-align: center;
     z-index: 10;
-    margin-top: 0;                       /* Remove the old margin */
+    background: rgba(0, 0, 0, 0.4);      /* Semi-dark strip behind dots for contrast */
+    padding: 8px 20px;
+    border-radius: 30px;
+    display: inline-block;
 }
 
-/* Optional: make dots more visible on dark images */
 .dot {
     height: 12px;
     width: 12px;
     margin: 0 8px;
-    background-color: rgba(255, 255, 255, 0.6);  /* Semi-transparent white */
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
-    transition: background-color 0.4s;
+    transition: all 0.4s;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3); /* Slight shadow for pop */
 }
 
 .dot.active,
 .dot:hover {
     background-color: var(--gold);
+    transform: scale(1.2);
 }
 
-/* Reduce overall section height */
+/* Make whole section more compact */
 .marketing-showcase {
-    padding: 2.5rem 0;                   /* Was 4rem — makes the whole section shorter */
+    padding: 2rem 0;                     /* Even tighter than before */
 }
 
-.dot.active,
-.dot:hover {
-    background-color: var(--gold);
+.section-title {
+    margin-bottom: 1.5rem;               /* Less space above slider */
 }
