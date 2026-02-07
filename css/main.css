@@ -11,10 +11,10 @@
     --text-light: #f0f0f0;
     --silver: #d0d0d0;
     --silver-light: #e8e8e8;
-    --gold: #b8860b; /* darker gold base */
-    --gold-light: #ffd700; /* bright gold */
-    --gold-gradient: linear-gradient(135deg, #ffd700, #ffaa00); /* brighter, vibrant gold */
-    --gold-glow: rgba(255, 215, 0, 0.4);
+    --gold: #806e4d;
+    --gold-light: #b39b7a;
+    --gold-gradient: linear-gradient(135deg, #806040, #d4af37); /* richer, more vibrant gold */
+    --gold-glow: rgba(128, 110, 77, 0.4);
     --font-primary: 'Inter', sans-serif;
     --font-secondary: 'Poppins', sans-serif;
     --space-xs: 0.75rem;
@@ -44,30 +44,35 @@ body {
 
 h1, h2, h3, h4 { 
     font-family: var(--font-secondary); 
-    font-weight: 900; 
+    font-weight: 900; /* max boldness */
     line-height: 1.2; 
 }
 
-/* Ultra-sharp hero headlines – no shadow, forced crisp rendering */
+/* Hero headlines – now ultra-sharp with crisp outline */
 .hero-title {
     font-size: clamp(3rem, 8vw, 6rem);
     line-height: 1.1;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
     word-break: break-word;
-    background: linear-gradient(135deg, #ffffff, #ffd700); /* white to bright gold */
+    background: linear-gradient(135deg, #ffffff, #d4af37);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: var(--space-lg);
     font-weight: 900;
-    /* Sharp rendering fixes */
+    /* Sharp dark outline – no blur at all */
+    text-shadow: 
+        2px 2px 0 rgba(0,0,0,0.9),
+        -2px -2px 0 rgba(0,0,0,0.9),
+        2px -2px 0 rgba(0,0,0,0.9),
+        -2px 2px 0 rgba(0,0,0,0.9),
+        0 2px 0 rgba(0,0,0,0.9),
+        0 -2px 0 rgba(0,0,0,0.9),
+        2px 0 0 rgba(0,0,0,0.9),
+        -2px 0 0 rgba(0,0,0,0.9);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
 }
 
 .hero-subtitle {
@@ -77,15 +82,15 @@ h1, h2, h3, h4 {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: var(--space-lg);
-    font-weight: 900;
-    /* Same sharp fixes */
+    font-weight: 800;
+    /* Same sharp outline */
+    text-shadow: 
+        2px 2px 0 rgba(0,0,0,0.9),
+        -2px -2px 0 rgba(0,0,0,0.9),
+        2px -2px 0 rgba(0,0,0,0.9),
+        -2px 2px 0 rgba(0,0,0,0.9);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
 }
 
 .hero-description-wrapper {
@@ -102,13 +107,14 @@ h1, h2, h3, h4 {
     color: var(--silver-light);
     opacity: 0.95;
     line-height: 1.7;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* subtle for readability */
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6); /* subtle for readability only */
 }
 
 .highlight-text {
     font-size: clamp(1.2rem, 3.5vw, 1.6rem) !important;
     font-weight: 800;
     color: var(--gold-light);
+    text-shadow: 0 0 12px var(--gold-glow), 1px 1px 0 rgba(0,0,0,0.8);
     -webkit-font-smoothing: antialiased;
 }
 
@@ -160,6 +166,7 @@ h1, h2, h3, h4 {
     flex-wrap: wrap;
 }
 
+/* Rest of your CSS remains mostly unchanged – only minor tweaks for consistency */
 @media (max-width: 768px) {
     .hero { padding-top: 80px; justify-content: flex-start; min-height: 90vh; }
     .hero-content { padding: var(--space-xl) 0 var(--space-xxl); }
@@ -185,6 +192,7 @@ h1, h2, h3, h4 {
     margin-bottom: var(--space-md);
     font-size: 2.8rem;
     font-weight: 800;
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
     -webkit-font-smoothing: antialiased;
 }
 
