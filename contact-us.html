@@ -3,53 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+
     <!-- Primary Meta Tags -->
     <title>Contact | Instastrategix | Global Digital Marketing Agency</title>
     <meta name="description" content="Get in touch with Instastrategix – a results-driven digital marketing agency. Book a free strategy call or reach out via email to discuss your growth goals.">
-    <meta name="keywords" content="contact Instastrategix, digital marketing agency contact, book strategy call, email instastrategix">
+    <meta name="keywords" content="contact Instastrategix, digital marketing agency contact, book strategy call">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Abhishek Choubey">
     <link rel="canonical" href="https://choubey-abhishek.github.io/Instastrategix/contact-us.html">
-    <!-- Open Graph / Social Meta -->
+
+    <!-- Open Graph -->
     <meta property="og:title" content="Contact Instastrategix | Global Digital Marketing Agency">
     <meta property="og:description" content="Ready to scale your digital presence? Reach out for a free strategy call or custom proposal.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://choubey-abhishek.github.io/Instastrategix/contact-us.html">
     <meta property="og:image" content="https://choubey-abhishek.github.io/Instastrategix/images/og-image.jpg">
     <meta property="og:site_name" content="Instastrategix">
-    <meta property="og:locale" content="en_IN">
-    <!-- Twitter Cards -->
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Contact Instastrategix | Global Digital Marketing Agency">
-    <meta name="twitter:description" content="Discuss your digital marketing needs – SEO, ads, social media, and content strategy.">
-    <meta name="twitter:image" content="https://choubey-abhishek.github.io/Instastrategix/images/og-image.jpg">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
- 
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
- 
+
     <!-- Styles -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/responsive.css">
- 
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-  
-    <!-- GSAP -->
+
+    <!-- GSAP + Tilt -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" defer></script>
-  
-    <!-- Vanilla Tilt for 3D card effects -->
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js" defer></script>
 </head>
 
-<!-- Enhanced Chatbot -->
+<body>
+
+<!-- Chatbot (CONSISTENT placement) -->
 <div class="chatbot-container">
     <button class="chatbot-toggle" aria-label="Open chat">
         <i class="fas fa-comment-dots"></i>
@@ -62,28 +61,23 @@
         <div class="chat-messages"></div>
         <div class="quick-replies"></div>
         <div class="chat-input">
-            <input type="text" placeholder="Type your message..." aria-label="Message input">
-            <button aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
+            <input type="text" placeholder="Type your message...">
+            <button><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
 </div>
-
 <script src="js/chatbot.js" defer></script>
-    
-<body>
-<!-- ================= Header / Navigation ================= -->
+
+<!-- Header (MATCHES index/about) -->
 <header class="site-header navbar">
     <div class="nav-container container">
         <div class="logo">
             <a href="index.html">
-                <img src="images/instastrategix-logo.png" alt="Instastrategix Logo" loading="lazy">
-                <div class="logo-text-wrapper">
-                    <span class="logo-text">Instastrategix</span>
-                    <span class="logo-tagline">Global Digital Marketing Agency</span>
-                </div>
+                <img src="images/instastrategix-logo.png" alt="Instastrategix Logo">
+                <span class="logo-text">Instastrategix</span>
             </a>
         </div>
-        <button class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
+        <button class="menu-toggle" aria-label="Toggle Menu">
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
@@ -92,15 +86,17 @@
             <a href="index.html" class="nav-link">Home</a>
             <a href="services.html" class="nav-link">Services</a>
             <a href="about-us.html" class="nav-link">About</a>
-            <a href="https://instastrategix0.blogspot.com/" class="nav-link" target="_blank">Blog</a>
+            <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
             <a href="contact-us.html" class="nav-link active">Contact</a>
         </nav>
         <a href="contact-us.html" class="nav-cta btn-primary">Get a Free Strategy Call</a>
     </div>
     <div class="header-border"></div>
 </header>
+
 <main>
-<!-- Hero Section -->
+
+<!-- Hero -->
 <section class="hero">
     <div class="particles-container">
         <canvas id="particles-canvas"></canvas>
@@ -108,7 +104,6 @@
     <div class="hero-overlay"></div>
     <div class="hero-content container text-center">
         <h1 class="hero-title">Contact Us</h1>
-        <p class="hero-subtitle">Instastrategix</p>
         <div class="hero-description-wrapper">
             <p class="hero-description">
                 If you are looking for a reliable digital marketing partner, we would be happy to discuss your requirements.
@@ -122,17 +117,14 @@
         </div>
         <div class="hero-buttons">
             <a href="#contact-form" class="btn btn-primary">Send a Message</a>
-            <a href="contact-us.html" class="btn btn-secondary">Book a Strategy Call</a>
         </div>
     </div>
 </section>
 
-<!-- Contact Information Section -->
-<section class="section-padding" style="background: #f8f9fa;">
+<!-- Contact Info -->
+<section class="section-padding" style="background:#f8f9fa;">
     <div class="container">
-        <div class="section-header text-center">
-            <h2 class="section-title">Contact Information</h2>
-        </div>
+        <h2 class="section-title text-center">Contact Information</h2>
         <div class="cards-grid">
             <div class="info-card" data-tilt>
                 <i class="fas fa-envelope card-icon"></i>
@@ -147,8 +139,10 @@
             <div class="info-card" data-tilt>
                 <i class="fab fa-linkedin card-icon"></i>
                 <h4>LinkedIn</h4>
-                <p><a href="https://www.linkedin.com/in/instastrategix-ix" target="_blank">Company Profile</a><br>
-                <a href="https://www.linkedin.com/in/abhishek-choubey-7a4b53146/" target="_blank">Founder – Abhishek Choubey</a></p>
+                <p>
+                    <a href="https://www.linkedin.com/in/instastrategix-ix" target="_blank">Company Profile</a><br>
+                    <a href="https://www.linkedin.com/in/abhishek-choubey-7a4b53146/" target="_blank">Founder – Abhishek Choubey</a>
+                </p>
             </div>
             <div class="info-card" data-tilt>
                 <i class="fab fa-instagram card-icon"></i>
@@ -159,188 +153,77 @@
     </div>
 </section>
 
-<!-- Contact Form Section -->
+<!-- Contact Form -->
 <section class="section-padding welcome-section" id="contact-form">
     <div class="container">
-        <div class="section-header text-center">
-            <h2 class="section-title">Send Us a Message</h2>
-            <p class="section-subtitle">Tell us about your project or goals — we’ll get back to you quickly.</p>
-        </div>
-        <div style="max-width: 800px; margin: 0 auto;">
+        <h2 class="section-title text-center">Send Us a Message</h2>
+        <p class="section-subtitle text-center">Tell us about your project or goals — we’ll get back to you quickly.</p>
+
+        <div style="max-width:800px;margin:0 auto;">
             <form class="contact-form" action="https://formspree.io/f/xbdajweb" method="POST">
-                <div class="form-group" style="margin-bottom: var(--space-lg);">
-                    <label for="name" style="display: block; font-weight: 600; margin-bottom: var(--space-sm); color: var(--text-primary);">Your Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your name" required style="width: 100%; padding: 1rem 1.5rem; border-radius: var(--radius-lg); border: 1px solid rgba(128,110,77,0.2); font-size: 1.1rem; transition: var(--transition);">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
                 </div>
-                <div class="form-group" style="margin-bottom: var(--space-lg);">
-                    <label for="email" style="display: block; font-weight: 600; margin-bottom: var(--space-sm); color: var(--text-primary);">Email Address</label>
-                    <input type="email" id="email" name="_replyto" placeholder="Enter your email" required style="width: 100%; padding: 1rem 1.5rem; border-radius: var(--radius-lg); border: 1px solid rgba(128,110,77,0.2); font-size: 1.1rem; transition: var(--transition);">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="_replyto" required>
                 </div>
-                <div class="form-group" style="margin-bottom: var(--space-lg);">
-                    <label for="message" style="display: block; font-weight: 600; margin-bottom: var(--space-sm); color: var(--text-primary);">Your Message</label>
-                    <textarea id="message" name="message" rows="6" placeholder="Tell us about your business and goals..." required style="width: 100%; padding: 1rem 1.5rem; border-radius: var(--radius-lg); border: 1px solid rgba(128,110,77,0.2); font-size: 1.1rem; resize: vertical; transition: var(--transition);"></textarea>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary" style="padding: 1.2rem 3rem; font-size: 1.1rem;">Send Message</button>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
                 </div>
             </form>
-            <p style="text-align: center; margin-top: var(--space-md); font-size: 0.95rem; color: var(--gold-light);">
+            <p class="text-center small-text">
                 We respect your privacy. Your information will only be used to respond to your inquiry.
             </p>
         </div>
     </div>
 </section>
+
 </main>
 
-<a href="#" class="scroll-to-top" aria-label="Scroll to top">
-    <i class="fas fa-arrow-up"></i>
-</a>
-
-<!-- Footer -->
+<!-- Footer (MATCHES index/about) -->
 <footer class="footer">
-    <svg class="footer-wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
-        <path d="M0,0 C480,100 960,20 1440,80 L1440,120 L0,120 Z" fill="rgba(128,110,77,0.08)"></path>
+    <svg class="footer-wave" viewBox="0 0 1440 200" preserveAspectRatio="none">
+        <path d="M0,100 C300,150 600,50 960,80 C1320,110 1140,30 1440,70 L1440,200 L0,200 Z"
+              fill="rgba(128,110,77,0.28)"></path>
     </svg>
+
     <div class="footer-grid container">
         <div class="footer-col">
-            <h4 class="footer-heading">Instastrategix</h4>
+            <img src="images/instastrategix-logo.png" alt="Instastrategix Logo">
             <p>Global Digital Marketing Agency<br>Based in India | Serving Worldwide</p>
-            <ul class="footer-list">
-                <li><i class="fas fa-envelope"></i> <a href="mailto:instastrategix@gmail.com">instastrategix@gmail.com</a></li>
-                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/instastrategix-ix" target="_blank">LinkedIn</a></li>
-                <li><i class="fab fa-facebook"></i> <a href="https://facebook.com/profile.php?id=61553148242829" target="_blank">Facebook</a></li>
-                <li><i class="fas fa-blog"></i> <a href="https://instastrategix0.blogspot.com/" target="_blank">Blog</a></li>
-            </ul>
         </div>
         <div class="footer-col">
-            <h4 class="footer-heading">Quick Links</h4>
+            <h4>Quick Links</h4>
             <ul class="footer-list">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="about-us.html">About</a></li>
-                <li><a href="https://instastrategix0.blogspot.com/" target="_blank">Blog</a></li>
                 <li><a href="contact-us.html">Contact</a></li>
                 <li><a href="privacy-policy.html">Privacy Policy</a></li>
             </ul>
         </div>
         <div class="footer-col">
-            <h4 class="footer-heading">Connect With Us</h4>
-            <p>Follow us for tips, guides & updates!</p>
+            <h4>Connect</h4>
             <div class="social-icons">
-                <a href="https://www.instagram.com/instastrategix/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/instastrategix-ix" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://facebook.com/profile.php?id=61553148242829" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://instastrategix0.blogspot.com/" target="_blank" aria-label="Blog"><i class="fas fa-blog"></i></a>
+                <a href="https://www.instagram.com/instastrategix/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/instastrategix-ix" target="_blank"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Subscribe</h4>
-            <p>Get our latest marketing tips directly to your inbox:</p>
-            <form class="subscribe-form">
-                <input type="email" placeholder="Your email" required aria-label="Email for newsletter">
-                <button type="submit" class="btn-primary">Subscribe</button>
-            </form>
-        </div>
     </div>
+
     <div class="footer-bottom">
-        &copy; 2026 Instastrategix. All Rights Reserved.
+        &copy; <span id="current-year"></span> Instastrategix. All Rights Reserved.
     </div>
 </footer>
 
-<!-- Scripts -->
 <script src="js/main.js" defer></script>
 <script src="js/gsap-animations.js" defer></script>
-<script>
-// Particles – same as other pages
-const canvas = document.getElementById('particles-canvas');
-const ctx = canvas.getContext('2d');
-let particlesArray = [];
-const mouse = { x: null, y: null, radius: 150 };
-window.addEventListener('mousemove', (e) => {
-    mouse.x = e.x;
-    mouse.y = e.y;
-});
-class Particle {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 1;
-        this.speedX = Math.random() * 1 - 0.5;
-        this.speedY = Math.random() * 1 - 0.5;
-    }
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x + this.size > canvas.width || this.x - this.size < 0) this.speedX = -this.speedX;
-        if (this.y + this.size > canvas.height || this.y - this.size < 0) this.speedY = -this.speedY;
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < mouse.radius) {
-            this.size = Math.min(7, this.size + 0.6);
-        } else if (this.size > 2) {
-            this.size -= 0.1;
-        }
-    }
-    draw() {
-        ctx.fillStyle = 'rgba(220, 220, 220, 0.95)';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-function init() {
-    particlesArray = [];
-    const numberOfParticles = (canvas.width * canvas.height) / 8000;
-    for (let i = 0; i < numberOfParticles; i++) {
-        particlesArray.push(new Particle());
-    }
-}
-function connect() {
-    for (let a = 0; a < particlesArray.length; a++) {
-        for (let b = a; b < particlesArray.length; b++) {
-            let dx = particlesArray[a].x - particlesArray[b].x;
-            let dy = particlesArray[a].y - particlesArray[b].y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < 130) {
-                ctx.strokeStyle = `rgba(200, 200, 200, ${1 - distance / 130})`;
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                ctx.stroke();
-            }
-        }
-    }
-}
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particlesArray.forEach(p => {
-        p.update();
-        p.draw();
-    });
-    connect();
-    requestAnimationFrame(animate);
-}
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = document.querySelector('.hero').offsetHeight;
-    init();
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-animate();
 
-// Text split
-function splitText() {
-    document.querySelectorAll('.hero-title, .section-title').forEach(el => {
-        const text = el.textContent.trim();
-        el.innerHTML = text.split('').map(char =>
-            `<span class="char" style="display:inline-block;">${char === ' ' ? '&nbsp;' : char}</span>`
-        ).join('');
-    });
-}
-splitText();
-</script>
 </body>
 </html>
