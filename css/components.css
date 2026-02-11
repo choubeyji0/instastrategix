@@ -247,11 +247,13 @@ img {
         background: rgba(0,0,0,0.6);
         z-index: 9998;
         display: block;
+        pointer-events: none; /* <-- FIX: allow menu links to be clickable */
     }
     .site-header {
         padding: 10px 0;
     }
 }
+
 /* Marketing Slider */
 .marketing-showcase {
     padding: 2rem 0;
