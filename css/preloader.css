@@ -1,15 +1,12 @@
 #preloader {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000000;
+  inset: 0;
+  background: #000000;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  transition: opacity 1s ease-out;
+  transition: opacity 1s ease-out 3.8s;
 }
 
 #preloader.fade-out {
@@ -17,82 +14,48 @@
   pointer-events: none;
 }
 
-.logo-wrapper {
-  position: relative;
-  width: 80vw;
-  max-width: 900px;
-}
-
-#ix-svg {
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 0 20px rgba(220, 220, 220, 0.4));
-}
-
-.draw-path {
-  fill: none;
-  stroke: url(#silverGrad);
-  stroke-width: 14;
-  stroke-linecap: round;
-}
-
-.dot {
-  fill: url(#silverGrad);
+.logo-container {
+  width: 70vw;
+  max-width: 700px;
   opacity: 0;
-  transform: scale(0);
-  transform-origin: center;
+  animation: focusReveal 2.2s cubic-bezier(0.25, 0.1, 0.25, 1) 0.4s forwards;
 }
 
-/* Drawing animations */
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
+@keyframes focusReveal {
+  0% {
+    opacity: 0;
+    filter: blur(16px);
+    transform: scale(1.15);
   }
-}
-
-@keyframes dot-appear {
-  to {
+  100% {
     opacity: 1;
+    filter: blur(0);
     transform: scale(1);
   }
 }
 
-.i-stem {
-  animation: draw 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  animation-delay: 0.4s;
+#ix-logo {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 40px rgba(200, 200, 200, 0.35));
 }
 
-.i-dot {
-  animation: dot-appear 0.6s cubic-bezier(0.3, 0, 0.4, 1.5) forwards;
-  animation-delay: 1s;
-}
-
-.x-line1 {
-  animation: draw 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  animation-delay: 1.4s;
-}
-
-.x-line2 {
-  animation: draw 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  animation-delay: 1.9s;
-}
-
-/* Final premium shine sweep */
-.logo-wrapper::after {
+/* Premium chrome shine sweep */
+.logo-container::after {
   content: '';
   position: absolute;
-  top: -10%;
-  left: -10%;
-  width: 120%;
-  height: 120%;
-  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.6) 50%, transparent 70%);
+  inset: 0;
+  background: linear-gradient(120deg, 
+    transparent 35%, 
+    rgba(255, 255, 255, 0.55) 50%, 
+    transparent 65%);
   transform: translateX(-120%);
-  animation: shine-sweep 1.2s cubic-bezier(0.2, 0, 0, 1) forwards;
-  animation-delay: 2.5s;
+  animation: chromeShine 1.6s cubic-bezier(0.4, 0, 0.2, 1) 2.4s forwards;
   pointer-events: none;
+  mix-blend-mode: screen;
 }
 
-@keyframes shine-sweep {
+@keyframes chromeShine {
   0% {
     transform: translateX(-120%);
   }
