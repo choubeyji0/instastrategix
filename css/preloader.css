@@ -1,4 +1,4 @@
-/* Preloader with IX space effect */
+/* Preloader container */
 #preloader {
   position: fixed;
   top: 0;
@@ -19,6 +19,7 @@
   visibility: hidden;
 }
 
+/* IX animation text */
 .ix-preloader {
   position: relative;
   z-index: 4;
@@ -29,20 +30,17 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 60px var(--gold-glow);
-  animation: ixPulse 4s ease-in-out infinite;
+  animation: ixPulse 1s ease-in-out 1; /* play once, 1s */
 }
 
+/* IX pulse animation */
 @keyframes ixPulse {
-  0%, 100% { 
-    transform: scale(1); 
-    text-shadow: 0 0 60px var(--gold-glow); 
-  }
-  50% { 
-    transform: scale(1.15); 
-    text-shadow: 0 0 120px var(--gold-glow); 
-  }
+  0% { transform: scale(1); text-shadow: 0 0 60px var(--gold-glow); }
+  50% { transform: scale(1.15); text-shadow: 0 0 120px var(--gold-glow); }
+  100% { transform: scale(1); text-shadow: 0 0 60px var(--gold-glow); }
 }
 
+/* Stars layers */
 .stars.layer {
   position: absolute;
   top: 0;
@@ -52,7 +50,7 @@
   opacity: 0.9;
 }
 
-/* Slow distant stars (small, faint) */
+/* Slow distant stars */
 .layer.slow {
   background: transparent;
   box-shadow:
@@ -115,7 +113,7 @@
   animation: moveStarsMedium 120s linear infinite;
 }
 
-/* Fast close stars (brighter, larger) */
+/* Fast stars */
 .layer.fast {
   background: transparent;
   box-shadow:
@@ -137,15 +135,6 @@
   animation: moveStarsFast 80s linear infinite;
 }
 
-@keyframes moveStarsSlow { 
-  from { transform: translateY(0); } 
-  to { transform: translateY(-3000px); } 
-}
-@keyframes moveStarsMedium { 
-  from { transform: translateY(0); } 
-  to { transform: translateY(-3000px); } 
-}
-@keyframes moveStarsFast { 
-  from { transform: translateY(0); } 
-  to { transform: translateY(-3000px); } 
-}
+@keyframes moveStarsSlow { from { transform: translateY(0); } to { transform: translateY(-3000px); } }
+@keyframes moveStarsMedium { from { transform: translateY(0); } to { transform: translateY(-3000px); } }
+@keyframes moveStarsFast { from { transform: translateY(0); } to { transform: translateY(-3000px); } }
