@@ -1,135 +1,94 @@
-/* Complete CSS for the preloader (replace or add to your preloader.css) */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Website</title>
+  <style>
+    /* Reset and basic styling */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif; /* Change to your preferred font */
+      overflow-x: hidden;
+    }
 
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  overflow: hidden;
-  /* Assuming you have a fade-out transition when hiding */
-  transition: opacity 1s ease-out;
-}
+    /* Intro overlay */
+    .intro {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1e3c72, #2a5298); /* Cool blue gradient – change colors as you like */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeOut 1s ease-out forwards 3s; /* Starts fading after 3s, takes 1s */
+    }
 
-.logo {
-  position: relative;
-  font-family: 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
-  font-weight: 900;
-  font-size: clamp(120px, 25vw, 600px);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 3px #353535; /* Dark inner bevel for raised metal depth */
-  background: linear-gradient(135deg, 
-    #f8f8f8 0%, 
-    #e8e8e8 15%, 
-    #c8c8c8 35%, 
-    #a8a8a8 50%, 
-    #c8c8c8 65%, 
-    #e8e8e8 85%, 
-    #ffffff 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: reveal 4s cubic-bezier(0.65, 0, 0.35, 1.4) forwards; /* Elastic overshoot for tactile luxury */
-  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.6));
-}
+    /* Logo styling */
+    .logo {
+      font-size: 140px;             /* Big and bold */
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 12px;         /* Space between i and x */
+      text-transform: uppercase;
+      opacity: 0;
+      animation: logoAppear 3s ease-out forwards;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+    }
 
-@keyframes reveal {
-  0% {
-    opacity: 0;
-    transform: scale(0.7) translateY(40px);
-    filter: blur(40px) drop-shadow(0 0 0 rgba(0, 0, 0, 0));
-  }
-  65% {
-    opacity: 1;
-    transform: scale(1.04) translateY(0);
-    filter: blur(0) drop-shadow(0 15px 40px rgba(0, 0, 0, 0.7));
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    filter: blur(0) drop-shadow(0 10px 30px rgba(0, 0, 0, 0.6));
-  }
-}
+    /* Logo animation – scale, rotate, blur to sharp */
+    @keyframes logoAppear {
+      0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-40deg);
+        filter: blur(20px);
+      }
+      70% {
+        transform: scale(1.15) rotate(8deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+        filter: blur(0);
+      }
+    }
 
-/* Sweeping specular highlight — the signature of polished luxury metal */
-.logo::before {
-  content: '';
-  position: absolute;
-  top: -150%;
-  left: -100%;
-  width: 400%;
-  height: 400%;
-  background: linear-gradient(
-    120deg,
-    transparent 35%,
-    rgba(255, 255, 255, 0.4) 45%,
-    rgba(255, 255, 255, 0.9) 50%,
-    rgba(255, 255, 255, 0.4) 55%,
-    transparent 65%
-  );
-  transform: rotate(25deg);
-  animation: specularSweep 9s linear infinite;
-  animation-delay: 3.2s; /* Starts near the end of reveal for perfect timing */
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
+    /* Fade out the entire intro screen */
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden; /* Removes it from flow */
+      }
+    }
 
-@keyframes specularSweep {
-  0% {
-    transform: rotate(25deg) translateX(-100%);
-  }
-  100% {
-    transform: rotate(25deg) translateX(100%);
-  }
-}
+    /* Your main website content */
+    .main-content {
+      min-height: 100vh;
+      background: #ffffff; /* Or your site's background */
+      padding: 40px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
 
-/* Subtle central atmospheric glow — like perfect studio key lighting */
-.logo::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 180%;
-  height: 180%;
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.35) 0%, transparent 65%);
-  transform: translate(-50%, -50%);
-  filter: blur(100px);
-  animation: softGlow 14s ease-in-out infinite;
-  pointer-events: none;
-  z-index: -1;
-}
+  <!-- Intro animation screen -->
+  <div class="intro">
+    <div class="logo">ix</div>
+  </div>
 
-@keyframes softGlow {
-  0%, 100% {
-    opacity: 0.4;
-    transform: translate(-50%, -50%) scale(0.9);
-  }
-  50% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scale(1.15);
-  }
-}
+  <!-- Your actual website content -->
+  <div class="main-content">
+    <h1>Welcome to the site!</h1>
+    <p>This is where your normal website content goes.</p>
+    <!-- Add the rest of your pages, navigation, etc. here -->
+  </div>
 
-/* Very subtle idle breathing after reveal */
-.logo {
-  animation: 
-    reveal 4s cubic-bezier(0.65, 0, 0.35, 1.4) forwards,
-    breathe 16s ease-in-out infinite 4.2s;
-}
-
-@keyframes breathe {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.015);
-  }
-}
+</body>
+</html>
