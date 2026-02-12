@@ -130,40 +130,61 @@
 function setPackage(amount, desc) {
     document.getElementById('amount').value = amount;
     document.getElementById('description').value = desc;
-    generatePayment();
 }
 
 function generatePayment() {
     const amount = document.getElementById('amount').value;
-    const description = document.getElementById('description').value || 'Payment to Instastrategix';
-    
+    const description = document.getElementById('description').value || 'Instastrategix Service';
+    const customerName = document.getElementById('customer-name').value || 'Customer';
+    const customerEmail = document.getElementById('customer-email').value || 'No email';
+    const customerPhone = document.getElementById('customer-phone').value || 'No phone';
+
     if (!amount || amount <= 0) {
         alert('Please enter a valid amount');
         return;
     }
+    if (!customerName || !customerEmail) {
+        alert('Please provide your name and email');
+        return;
+    }
 
-    const pa = 'instastrategix@oksbi';  // ← REPLACE WITH YOUR REAL UPI ID
-    const pn = 'Instastrategix';        // ← YOUR MERCHANT NAME
+    const pa = 'YOUR_UPI_ID_HERE';            // ← Replace with real UPI ID
+    const pn = 'Instastrategix';              
     const cu = 'INR';
-    const tn = encodeURIComponent(description);
+    const tn = encodeURIComponent(`${customerName} - ${description} - ${customerEmail}`);
 
     const upiUrl = `upi://pay?pa=${pa}&pn=${pn}&am=${amount}&cu=${cu}&tn=${tn}`;
 
     document.getElementById('display-amount').textContent = amount;
+    document.getElementById('display-note').textContent = `${customerName} - ${description}`;
     document.getElementById('upi-link').href = upiUrl;
 
     const qrDiv = document.getElementById('qrcode');
     qrDiv.innerHTML = '';
     new QRCode(qrDiv, {
         text: upiUrl,
-        width: 256,
-        height: 256,
+        width: 280,
+        height: 280,
         colorDark: "#000000",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H
     });
 
     document.getElementById('payment-output').style.display = 'block';
+    document.getElementById('post-instructions').innerHTML = `
+        <p><strong>After payment:</strong></p>
+        <ol>
+            <li>Complete the payment in your UPI app</li>
+            <li>Note the 12-digit transaction ID</li>
+            <li>Send it to <strong>instastrategix@gmail.com</strong> or WhatsApp with:<br>
+                - Your Name: ${customerName}<br>
+                - Email: ${customerEmail}<br>
+                - Phone: ${customerPhone}<br>
+                - Service: ${description}</li>
+        </ol>
+        <p>We will verify instantly and proceed with your service.</p>
+    `;
+
     document.getElementById('payment-output').scrollIntoView({ behavior: 'smooth' });
 }
 </script>
