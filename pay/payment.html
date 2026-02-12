@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Payment | Instastrategix</title>
-    <meta name="description" content="Secure UPI payment for Instastrategix digital marketing services. Pay directly via Google Pay, PhonePe, BHIM, or any UPI app.">
-    <!-- Reuse your existing styles and fonts -->
+    <meta name="description" content="Secure payment for Instastrategix digital marketing services via UPI (India) or PayPal/Credit Card (Worldwide).">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -14,30 +14,33 @@
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/payment.css">
-    <!-- QR Code Library (lightweight, reliable) -->
+
+    <!-- QR Code Library -->
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
     <style>
         .payment-section { padding: 80px 0; background: #f8f9fa; }
         .payment-container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
         .payment-header { text-align: center; margin-bottom: 50px; }
         .packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 50px; }
-        .package-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; transition: transform 0.3s; }
+        .package-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; transition: transform 0.3s; cursor: pointer; }
         .package-card:hover { transform: translateY(-10px); }
         .package-price { font-size: 2.5rem; font-weight: 800; color: var(--primary-color, #806e4d); margin: 15px 0; }
         .generate-form { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
         .form-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
-        #payment-output { margin-top: 40px; text-align: center; padding: 30px; background: #f0f8f0; border-radius: 12px; display: none; }
+        #payment-output { margin-top: 40px; padding: 30px; background: #f0f8f0; border-radius: 12px; display: none; text-align: center; }
         #qrcode { margin: 30px auto; }
         .upi-btn { display: inline-block; background: var(--primary-color, #806e4d); color: white; padding: 14px 30px; border-radius: 8px; font-weight: 600; text-decoration: none; margin: 15px; transition: background 0.3s; }
         .upi-btn:hover { background: #6b5b3d; }
-        .post-payment { margin-top: 40px; padding: 20px; background: #e3f2fd; border-radius: 8px; }
+        .paypal-section { margin-top: 40px; padding: 20px; background: #e3f2fd; border-radius: 12px; }
+        .post-payment-info { margin-top: 40px; padding: 20px; background: #fff3e0; border-radius: 8px; text-align: left; }
     </style>
 </head>
 <body>
 
-<!-- Reuse your existing header -->
+<!-- Your existing header -->
 <header class="site-header navbar">
     <div class="nav-container container">
         <div class="logo">
@@ -55,7 +58,7 @@
             <a href="index.html" class="nav-link">Home</a>
             <a href="about-us.html" class="nav-link">About</a>
             <a href="services.html" class="nav-link">Services</a>
-            <a href="payment.html" class="nav-link">Pricing & Payment</a>
+            <a href="payment.html" class="nav-link active">Pricing & Payment</a> <!-- active class added -->
             <a href="contact-us.html" class="nav-link">Contact</a>
             <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
             <a href="https://instastrategix0.blogspot.com/" class="nav-link" target="_blank">Blog</a>
@@ -70,11 +73,11 @@
     <div class="container">
         <div class="payment-container">
             <div class="payment-header">
-                <h1 class="section-title">Secure UPI Payment</h1>
-                <p class="section-subtitle">Pay directly to Instastrategix via any UPI app (Google Pay, PhonePe, BHIM, Paytm, etc.)</p>
+                <h1 class="section-title">Secure Payment</h1>
+                <p class="section-subtitle">Pay via UPI (India) or PayPal/Credit Card (Worldwide)</p>
             </div>
 
-            <!-- Quick Package Selection -->
+            <!-- Package Selection -->
             <h2 style="text-align:center; margin-bottom:30px;">Choose a Package</h2>
             <div class="packages-grid">
                 <div class="package-card" onclick="setPackage('4999', 'Paid Strategy Consultation')">
@@ -96,59 +99,76 @@
 
             <!-- Custom Amount Form -->
             <div class="generate-form">
-    <h2 style="text-align:center; margin-bottom:30px;">Or Pay Custom Amount</h2>
-    
-    <div class="form-group">
-        <label for="customer-name">Your Full Name *</label>
-        <input type="text" id="customer-name" placeholder="Enter your name" required>
-    </div>
-    
-    <div class="form-group">
-        <label for="customer-email">Email Address *</label>
-        <input type="email" id="customer-email" placeholder="your@email.com" required>
-    </div>
-    
-    <div class="form-group">
-        <label for="customer-phone">Phone Number <span style="font-weight:400; color:#666;">(optional)</span></label>
-        <input type="tel" id="customer-phone" placeholder="Phone no'">
-    </div>
-    
-    <div class="form-group">
-        <label for="amount">Payment Amount (₹) *</label>
-        <input type="number" id="amount" placeholder="Enter amount (e.g., 14999)" required min="1">
-    </div>
-    
-    <div class="form-group">
-        <label for="description">Service / Package Description <span style="font-weight:400; color:#666;">(optional)</span></label>
-        <input type="text" id="description" placeholder="e.g., Paid Strategy Consultation + SEO Package">
-    </div>
-    
-    <button class="btn-primary" style="width:100%; padding:16px; font-size:1.1rem; margin-top:10px;" onclick="generatePayment()">
-        Generate QR Code & Payment Link
-    </button>
-    
-    <p style="text-align:center; margin-top:20px; font-size:0.95rem; color:#555;">
-        Secure direct UPI payment • No extra fees • Instant bank transfer
-    </p>
-</div>
-            <!-- Output Area -->
+                <h2 style="text-align:center; margin-bottom:30px;">Or Pay Custom Amount</h2>
+                <div class="form-group">
+                    <label for="customer-name">Your Full Name *</label>
+                    <input type="text" id="customer-name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer-email">Email Address *</label>
+                    <input type="email" id="customer-email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer-phone">Phone Number <span style="font-weight:400; color:#666;">(optional)</span></label>
+                    <input type="tel" id="customer-phone" placeholder="e.g. 9876543210">
+                </div>
+                <div class="form-group">
+                    <label for="amount">Payment Amount (₹) *</label>
+                    <input type="number" id="amount" placeholder="Enter amount (e.g., 14999)" required min="1">
+                </div>
+                <div class="form-group">
+                    <label for="description">Service / Package Description <span style="font-weight:400; color:#666;">(optional)</span></label>
+                    <input type="text" id="description" placeholder="e.g., Paid Strategy Consultation + SEO Package">
+                </div>
+                <button class="btn-primary" style="width:100%; padding:16px; font-size:1.1rem; margin-top:10px;" onclick="generatePayment()">
+                    Generate Payment Options
+                </button>
+                <p style="text-align:center; margin-top:20px; font-size:0.95rem; color:#555;">
+                    Secure payment • No extra fees • Instant processing
+                </p>
+            </div>
+
+            <!-- Payment Output -->
             <div id="payment-output">
                 <h3>Ready to Pay</h3>
                 <p>Amount: <strong>₹<span id="display-amount"></span></strong></p>
-                <a id="upi-link" class="upi-btn" target="_blank">Pay Now via UPI App</a>
-                <div id="qrcode"></div>
-                <div class="post-payment">
-                    <p><strong>After successful payment:</strong><br>
-                    Note the 12-digit transaction ID and send it to <strong>instastrategix@gmail.com</strong> or via our <a href="contact-us.html">contact form</a> along with your name and service required. We will confirm within minutes and proceed.</p>
+                <p>Payment for: <strong id="display-note"></strong></p>
+
+                <!-- UPI (India) -->
+                <div style="margin-bottom: 40px;">
+                    <h4>Pay with UPI (India)</h4>
+                    <a id="upi-link" class="upi-btn" target="_blank">Open UPI App</a>
+                    <div id="qrcode"></div>
+                    <p>Scan with Google Pay, PhonePe, BHIM, Paytm, or any UPI app</p>
                 </div>
+
+                <!-- PayPal (International) -->
+                <div class="paypal-section">
+                    <h4>Pay Internationally</h4>
+                    <p>Using PayPal or any Credit/Debit Card (accepted worldwide)</p>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" id="paypal-form">
+                        <input type="hidden" name="cmd" value="_xclick">
+                        <input type="hidden" name="business" value="YOUR_PAYPAL_BUSINESS_EMAIL"> <!-- REPLACE -->
+                        <input type="hidden" name="item_name" id="paypal-item-name">
+                        <input type="hidden" name="amount" id="paypal-amount">
+                        <input type="hidden" name="currency_code" value="INR">
+                        <input type="hidden" name="no_shipping" value="1">
+                        <input type="hidden" name="no_note" value="1">
+                        <input type="hidden" name="return" value="https://yourdomain.com/thank-you.html">
+                        <input type="hidden" name="cancel_return" value="https://yourdomain.com/payment.html">
+                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="Pay with PayPal">
+                    </form>
+                </div>
+
+                <!-- Post-payment instructions (dynamic) -->
+                <div class="post-payment-info" id="post-payment-info"></div>
             </div>
         </div>
     </div>
 </section>
 </main>
 
-<!-- Reuse your existing footer (copy-paste from index.html) -->
-<!-- ... footer code here ... -->
+<!-- Add your footer here -->
 
 <script>
 function setPackage(amount, desc) {
@@ -159,9 +179,9 @@ function setPackage(amount, desc) {
 function generatePayment() {
     const amount = document.getElementById('amount').value;
     const description = document.getElementById('description').value || 'Instastrategix Service';
-    const customerName = document.getElementById('customer-name').value || 'Customer';
-    const customerEmail = document.getElementById('customer-email').value || 'No email';
-    const customerPhone = document.getElementById('customer-phone').value || 'No phone';
+    const customerName = document.getElementById('customer-name').value.trim() || 'Customer';
+    const customerEmail = document.getElementById('customer-email').value.trim() || 'No email provided';
+    const customerPhone = document.getElementById('customer-phone').value.trim() || 'Not provided';
 
     if (!amount || amount <= 0) {
         alert('Please enter a valid amount');
@@ -172,11 +192,11 @@ function generatePayment() {
         return;
     }
 
-    const pa = 'YOUR_UPI_ID_HERE';            // ← Replace with real UPI ID
-    const pn = 'Instastrategix';              
+    // UPI Generation
+    const pa = 'YOUR_UPI_ID_HERE'; // ← Replace with real UPI ID
+    const pn = 'Instastrategix';
     const cu = 'INR';
     const tn = encodeURIComponent(`${customerName} - ${description} - ${customerEmail}`);
-
     const upiUrl = `upi://pay?pa=${pa}&pn=${pn}&am=${amount}&cu=${cu}&tn=${tn}`;
 
     document.getElementById('display-amount').textContent = amount;
@@ -194,21 +214,26 @@ function generatePayment() {
         correctLevel: QRCode.CorrectLevel.H
     });
 
-    document.getElementById('payment-output').style.display = 'block';
-    document.getElementById('post-instructions').innerHTML = `
-        <p><strong>After payment:</strong></p>
-        <ol>
-            <li>Complete the payment in your UPI app</li>
-            <li>Note the 12-digit transaction ID</li>
-            <li>Send it to <strong>instastrategix@gmail.com</strong> or WhatsApp with:<br>
-                - Your Name: ${customerName}<br>
-                - Email: ${customerEmail}<br>
-                - Phone: ${customerPhone}<br>
-                - Service: ${description}</li>
-        </ol>
-        <p>We will verify instantly and proceed with your service.</p>
+    // PayPal fields
+    document.getElementById('paypal-amount').value = amount;
+    document.getElementById('paypal-item-name').value = `${description} - ${customerName}`;
+
+    // Dynamic post-payment instructions
+    document.getElementById('post-payment-info').innerHTML = `
+        <p><strong>After successful payment:</strong></p>
+        <ul>
+            <li><strong>UPI (India):</strong> Note the 12-digit transaction ID and send it to <strong>instastrategix@gmail.com</strong> along with your details.</li>
+            <li><strong>PayPal/Card (International):</strong> We receive instant notification from PayPal and will confirm via email within minutes.</li>
+        </ul>
+        <p><strong>Your details (for our reference):</strong><br>
+        Name: ${customerName}<br>
+        Email: ${customerEmail}<br>
+        Phone: ${customerPhone}<br>
+        Service: ${description}</p>
+        <p>We will verify and start your service immediately. Thank you!</p>
     `;
 
+    document.getElementById('payment-output').style.display = 'block';
     document.getElementById('payment-output').scrollIntoView({ behavior: 'smooth' });
 }
 </script>
