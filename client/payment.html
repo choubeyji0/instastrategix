@@ -12,9 +12,9 @@ body{
     color:white;
 }
 .container{
-    padding:40px;
     max-width:1000px;
-    margin:auto;
+    margin:60px auto;
+    padding:20px;
 }
 h2{text-align:center;margin-bottom:40px;}
 .grid{
@@ -30,13 +30,10 @@ h2{text-align:center;margin-bottom:40px;}
     transition:0.3s;
 }
 .card:hover{
-    transform:scale(1.05);
     background:#334155;
 }
-.price{
-    font-size:20px;
-    font-weight:bold;
-    margin-top:10px;
+.selected{
+    border:2px solid #6366f1;
 }
 button{
     margin-top:30px;
@@ -57,22 +54,19 @@ button{
     <h2>Select Your Service</h2>
 
     <div class="grid">
-        <div class="card" onclick="selectService('Social Media Basic',12999)">
+        <div class="card" onclick="selectService(this,'Social Media Basic',12999)">
             <h3>Social Media Basic</h3>
-            <p>12 Posts + Basic Strategy</p>
-            <div class="price">₹12,999 / Month</div>
+            <p>₹12,999 / Month</p>
         </div>
 
-        <div class="card" onclick="selectService('Social Media Premium',44999)">
+        <div class="card" onclick="selectService(this,'Social Media Premium',44999)">
             <h3>Social Media Premium</h3>
-            <p>Full Management + Ads + SEO</p>
-            <div class="price">₹44,999 / Month</div>
+            <p>₹44,999 / Month</p>
         </div>
 
-        <div class="card" onclick="selectService('Website Basic',14999)">
+        <div class="card" onclick="selectService(this,'Website Basic',14999)">
             <h3>Website Basic</h3>
-            <p>3 Page Website</p>
-            <div class="price">₹14,999 One Time</div>
+            <p>₹14,999 One-Time</p>
         </div>
     </div>
 
@@ -82,17 +76,23 @@ button{
 <script>
 let selectedService = null;
 
-function selectService(name, price){
-    selectedService = {name, price};
-    alert(name + " selected");
+function selectService(element, name, price){
+
+    document.querySelectorAll(".card").forEach(c => c.classList.remove("selected"));
+
+    element.classList.add("selected");
+
+    selectedService = { name, price };
+
+    localStorage.setItem("selectedService", JSON.stringify(selectedService));
 }
 
 function goCheckout(){
     if(!selectedService){
-        alert("Please select a service");
+        alert("Please select a service first.");
         return;
     }
-    localStorage.setItem("selectedService", JSON.stringify(selectedService));
+
     window.location.href = "checkout.html";
 }
 </script>
