@@ -1,20 +1,80 @@
-<section class="dashboard">
-    <h1>Client Dashboard</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | Instastrategix</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+}
+header {
+    background: #111827;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+button {
+    padding: 8px 15px;
+    background: #ef4444;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.container {
+    padding: 40px;
+}
+.card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+</style>
+</head>
+<body>
 
-    <div class="dashboard-grid">
-        <div class="box">
-            <h3>Active Plan</h3>
-            <p id="activePlan">Loading...</p>
-        </div>
+<script>
+if(localStorage.getItem("isLoggedIn") !== "true"){
+    window.location.href = "login.html";
+}
+</script>
 
-        <div class="box">
-            <h3>Payment History</h3>
-            <div id="paymentHistory"></div>
-        </div>
+<header>
+    <h2>Client Dashboard</h2>
+    <button onclick="logout()">Logout</button>
+</header>
 
-        <div class="box">
-            <h3>Brand Overview</h3>
-            <p>Track your growth performance, campaigns, and leads here.</p>
-        </div>
+<div class="container">
+    <h3 id="welcome"></h3>
+
+    <div class="card">
+        <h4>Brand Information</h4>
+        <p>Service: Social Media Management</p>
+        <p>Status: Active</p>
+        <p>Next Payment Due: 30 Days</p>
     </div>
-</section>
+
+    <div class="card">
+        <h4>Payments</h4>
+        <p>No payments yet.</p>
+    </div>
+</div>
+
+<script>
+const user = JSON.parse(localStorage.getItem("instaUser"));
+document.getElementById("welcome").innerText = "Welcome, " + user.name;
+
+function logout(){
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
