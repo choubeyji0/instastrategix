@@ -34,52 +34,52 @@ select{
     margin-top:10px;
     border-radius:6px;
 }
+a{color:#6366f1;}
 </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Order Summary</h2>
-    <p id="serviceName"></p>
-    <p id="servicePrice"></p>
-
-    <h3>Payment Method</h3>
-    <select id="paymentMethod">
-        <option value="">Select Method</option>
-        <option value="upi">UPI</option>
-        <option value="gpay">Google Pay</option>
-        <option value="razorpay">Razorpay</option>
-    </select>
-
-    <button onclick="startPayment()">Proceed to Pay</button>
-</div>
+<div class="container" id="content"></div>
 
 <script>
 const service = JSON.parse(localStorage.getItem("selectedService"));
+const container = document.getElementById("content");
 
 if(!service){
-    window.location.href = "payment.html";
+    container.innerHTML = `
+        <h2>No Service Selected</h2>
+        <p>Please select a service before checkout.</p>
+        <a href="payment.html">Go Back</a>
+    `;
+} else {
+
+    container.innerHTML = `
+        <h2>Order Summary</h2>
+        <p><strong>Service:</strong> ${service.name}</p>
+        <p><strong>Amount:</strong> ₹${service.price}</p>
+
+        <h3>Payment Method</h3>
+        <select id="paymentMethod">
+            <option value="">Select Method</option>
+            <option value="upi">UPI</option>
+            <option value="gpay">Google Pay</option>
+            <option value="razorpay">Razorpay</option>
+        </select>
+
+        <button onclick="startPayment()">Proceed to Pay</button>
+    `;
 }
-
-document.getElementById("serviceName").innerText = "Service: " + service.name;
-document.getElementById("servicePrice").innerText = "Amount: ₹" + service.price;
-
-// Clear previous payment state
-localStorage.removeItem("paymentStatus");
 
 function startPayment(){
 
     const method = document.getElementById("paymentMethod").value;
 
     if(method === ""){
-        alert("Please select payment method");
+        alert("Please select payment method.");
         return;
     }
 
-    // 🔴 No fake success anymore
-    // Payment integration will go here later
-
-    alert("Payment gateway integration will be added here (Razorpay)");
+    alert("Razorpay integration will be added here.");
 
 }
 </script>
