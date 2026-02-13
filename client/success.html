@@ -23,8 +23,14 @@ a{
 </head>
 <body>
 
-<h1>Payment Successful 🎉</h1>
-<p>Your service has been booked successfully.</p>
+<script>
+if(localStorage.getItem("paymentStatus") !== "paid"){
+    window.location.href = "payment.html";
+}
+</script>
+
+<h1>Payment Successful</h1>
+<p>Your order has been confirmed.</p>
 <a href="dashboard.html">Go to Dashboard</a>
 
 </body>
