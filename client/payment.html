@@ -3,94 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Select Plan | Instastrategix</title>
+<title>Select Service | Instastrategix</title>
 
 <style>
-body {
-    margin: 0;
+body{
+    margin:0;
     font-family: Arial, sans-serif;
-    background: #0f172a;
-    color: white;
+    background:#0f172a;
+    color:white;
 }
-
-.container {
-    padding: 50px;
-    text-align: center;
+.container{
+    padding:40px;
+    text-align:center;
 }
-
-.plans {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
+h1{
+    margin-bottom:40px;
 }
-
-.card {
-    background: #1e293b;
-    padding: 30px;
-    width: 280px;
-    border-radius: 15px;
+.grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:20px;
 }
-
-.price {
-    font-size: 24px;
-    margin: 15px 0;
-    color: #6366f1;
+.card{
+    background:#1e293b;
+    padding:25px;
+    border-radius:12px;
+    transition:0.3s;
 }
-
-button {
-    background: #6366f1;
-    color: white;
-    border: none;
-    padding: 12px;
-    width: 100%;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
+.card:hover{
+    transform:translateY(-5px);
+    background:#334155;
 }
-button:hover {
-    background: #4f46e5;
+.price{
+    font-size:22px;
+    margin:15px 0;
+    color:#6366f1;
+}
+button{
+    padding:10px 15px;
+    background:#6366f1;
+    border:none;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+}
+button:hover{
+    background:#4f46e5;
 }
 </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Choose Your Plan</h1>
+<h1>Select Your Service</h1>
 
-    <div class="plans">
+<div class="grid">
 
-        <div class="card">
-            <h2>Basic Plan</h2>
-            <div class="price">₹12,999 / Month</div>
-            <button onclick="selectPlan('Basic Plan', 12999)">Select Plan</button>
-        </div>
+<!-- Social Media Basic -->
+<div class="card">
+<h3>Social Media Basic</h3>
+<p class="price">₹12,999 / Month</p>
+<button onclick="selectPlan('Social Media Basic',12999)">Select</button>
+</div>
 
-        <div class="card">
-            <h2>Advanced Plan</h2>
-            <div class="price">₹24,999 / Month</div>
-            <button onclick="selectPlan('Advanced Plan', 24999)">Select Plan</button>
-        </div>
+<!-- Social Media Advanced -->
+<div class="card">
+<h3>Social Media Advanced</h3>
+<p class="price">₹24,999 / Month</p>
+<button onclick="selectPlan('Social Media Advanced',24999)">Select</button>
+</div>
 
-        <div class="card">
-            <h2>Premium Plan</h2>
-            <div class="price">₹44,999 / Month</div>
-            <button onclick="selectPlan('Premium Plan', 44999)">Select Plan</button>
-        </div>
+<!-- Social Media Premium -->
+<div class="card">
+<h3>Social Media Premium</h3>
+<p class="price">₹44,999 / Month</p>
+<button onclick="selectPlan('Social Media Premium',44999)">Select</button>
+</div>
 
-    </div>
+<!-- Website Basic -->
+<div class="card">
+<h3>Website Basic</h3>
+<p class="price">₹14,999 One Time</p>
+<button onclick="selectPlan('Website Basic',14999)">Select</button>
+</div>
+
+<!-- Website Advanced -->
+<div class="card">
+<h3>Website Advanced</h3>
+<p class="price">₹29,999 One Time</p>
+<button onclick="selectPlan('Website Advanced',29999)">Select</button>
+</div>
+
+<!-- Website Premium -->
+<div class="card">
+<h3>Website Premium</h3>
+<p class="price">₹59,999 One Time</p>
+<button onclick="selectPlan('Website Premium',59999)">Select</button>
+</div>
+
+</div>
 </div>
 
 <script>
-function selectPlan(planName, price) {
-
-    const selectedPlan = {
-        name: planName,
+function selectPlan(name, price){
+    const plan = {
+        service: name,
         amount: price
     };
 
-    localStorage.setItem("selectedPlan", JSON.stringify(selectedPlan));
-
+    localStorage.setItem("selectedPlan", JSON.stringify(plan));
     window.location.href = "checkout.html";
 }
 </script>
