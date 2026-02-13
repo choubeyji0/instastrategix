@@ -12,7 +12,7 @@ body{
 }
 .container{
     max-width:600px;
-    margin:100px auto;
+    margin:80px auto;
     background:#1e293b;
     padding:30px;
     border-radius:10px;
@@ -20,7 +20,7 @@ body{
 button{
     width:100%;
     padding:15px;
-    background:#22c55e;
+    background:#6366f1;
     border:none;
     border-radius:8px;
     color:white;
@@ -28,23 +28,30 @@ button{
     margin-top:20px;
     cursor:pointer;
 }
+select{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border-radius:6px;
+}
 </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Checkout</h2>
+    <h2>Order Summary</h2>
     <p id="serviceName"></p>
     <p id="servicePrice"></p>
 
-    <h3>Choose Payment Method</h3>
+    <h3>Payment Method</h3>
     <select id="paymentMethod">
-        <option>UPI</option>
-        <option>Google Pay</option>
-        <option>Razorpay</option>
+        <option value="">Select Method</option>
+        <option value="upi">UPI</option>
+        <option value="gpay">Google Pay</option>
+        <option value="razorpay">Razorpay</option>
     </select>
 
-    <button onclick="makePayment()">Pay Now</button>
+    <button onclick="startPayment()">Proceed to Pay</button>
 </div>
 
 <script>
@@ -57,15 +64,23 @@ if(!service){
 document.getElementById("serviceName").innerText = "Service: " + service.name;
 document.getElementById("servicePrice").innerText = "Amount: ₹" + service.price;
 
-function makePayment(){
-    const success = Math.random() > 0.3;
+// Clear previous payment state
+localStorage.removeItem("paymentStatus");
 
-    if(success){
-        localStorage.setItem("paymentStatus","success");
-        window.location.href = "success.html";
-    }else{
-        window.location.href = "failed.html";
+function startPayment(){
+
+    const method = document.getElementById("paymentMethod").value;
+
+    if(method === ""){
+        alert("Please select payment method");
+        return;
     }
+
+    // 🔴 No fake success anymore
+    // Payment integration will go here later
+
+    alert("Payment gateway integration will be added here (Razorpay)");
+
 }
 </script>
 
