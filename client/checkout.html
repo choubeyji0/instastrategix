@@ -1,11 +1,58 @@
-<section class="checkout-container">
-    <h2>Secure Checkout</h2>
-    <div id="checkoutDetails"></div>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Checkout | Instastrategix</title>
+<style>
+body {
+    background: #0f172a;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+    padding: 50px;
+}
+.card {
+    background: #1e293b;
+    padding: 30px;
+    width: 400px;
+    margin: auto;
+    border-radius: 15px;
+}
+button {
+    background: #22c55e;
+    padding: 12px;
+    border: none;
+    color: white;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
 
-    <div class="payment-methods">
-        <h4>Choose Payment Method</h4>
-        <button class="pay-btn">Pay with UPI</button>
-        <button class="pay-btn">Pay with Google Pay</button>
-        <button class="pay-btn">Pay with Razorpay</button>
-    </div>
-</section>
+<div class="card">
+    <h2>Order Summary</h2>
+    <h3 id="planName"></h3>
+    <p id="planPrice"></p>
+    <button onclick="payNow()">Proceed to Payment</button>
+</div>
+
+<script>
+const plan = JSON.parse(localStorage.getItem("selectedPlan"));
+
+if(!plan){
+    window.location.href = "payment.html";
+}
+
+document.getElementById("planName").innerText = plan.name;
+document.getElementById("planPrice").innerText = "Amount: ₹" + plan.amount;
+
+function payNow(){
+    // Demo success redirect
+    window.location.href = "success.html";
+}
+</script>
+
+</body>
+</html>
