@@ -1,117 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Select Service | Instastrategix</title>
-
 <style>
 body{
     margin:0;
-    font-family: Arial, sans-serif;
+    font-family:Arial;
     background:#0f172a;
     color:white;
 }
 .container{
     padding:40px;
-    text-align:center;
+    max-width:1000px;
+    margin:auto;
 }
-h1{
-    margin-bottom:40px;
-}
+h2{text-align:center;margin-bottom:40px;}
 .grid{
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
     gap:20px;
 }
 .card{
     background:#1e293b;
-    padding:25px;
-    border-radius:12px;
+    padding:20px;
+    border-radius:10px;
+    cursor:pointer;
     transition:0.3s;
 }
 .card:hover{
-    transform:translateY(-5px);
+    transform:scale(1.05);
     background:#334155;
 }
 .price{
-    font-size:22px;
-    margin:15px 0;
-    color:#6366f1;
+    font-size:20px;
+    font-weight:bold;
+    margin-top:10px;
 }
 button{
-    padding:10px 15px;
+    margin-top:30px;
+    width:100%;
+    padding:15px;
     background:#6366f1;
     border:none;
+    border-radius:8px;
     color:white;
-    border-radius:6px;
+    font-size:16px;
     cursor:pointer;
-}
-button:hover{
-    background:#4f46e5;
 }
 </style>
 </head>
 <body>
 
 <div class="container">
-<h1>Select Your Service</h1>
+    <h2>Select Your Service</h2>
 
-<div class="grid">
+    <div class="grid">
+        <div class="card" onclick="selectService('Social Media Basic',12999)">
+            <h3>Social Media Basic</h3>
+            <p>12 Posts + Basic Strategy</p>
+            <div class="price">₹12,999 / Month</div>
+        </div>
 
-<!-- Social Media Basic -->
-<div class="card">
-<h3>Social Media Basic</h3>
-<p class="price">₹12,999 / Month</p>
-<button onclick="selectPlan('Social Media Basic',12999)">Select</button>
-</div>
+        <div class="card" onclick="selectService('Social Media Premium',44999)">
+            <h3>Social Media Premium</h3>
+            <p>Full Management + Ads + SEO</p>
+            <div class="price">₹44,999 / Month</div>
+        </div>
 
-<!-- Social Media Advanced -->
-<div class="card">
-<h3>Social Media Advanced</h3>
-<p class="price">₹24,999 / Month</p>
-<button onclick="selectPlan('Social Media Advanced',24999)">Select</button>
-</div>
+        <div class="card" onclick="selectService('Website Basic',14999)">
+            <h3>Website Basic</h3>
+            <p>3 Page Website</p>
+            <div class="price">₹14,999 One Time</div>
+        </div>
+    </div>
 
-<!-- Social Media Premium -->
-<div class="card">
-<h3>Social Media Premium</h3>
-<p class="price">₹44,999 / Month</p>
-<button onclick="selectPlan('Social Media Premium',44999)">Select</button>
-</div>
-
-<!-- Website Basic -->
-<div class="card">
-<h3>Website Basic</h3>
-<p class="price">₹14,999 One Time</p>
-<button onclick="selectPlan('Website Basic',14999)">Select</button>
-</div>
-
-<!-- Website Advanced -->
-<div class="card">
-<h3>Website Advanced</h3>
-<p class="price">₹29,999 One Time</p>
-<button onclick="selectPlan('Website Advanced',29999)">Select</button>
-</div>
-
-<!-- Website Premium -->
-<div class="card">
-<h3>Website Premium</h3>
-<p class="price">₹59,999 One Time</p>
-<button onclick="selectPlan('Website Premium',59999)">Select</button>
-</div>
-
-</div>
+    <button onclick="goCheckout()">Proceed to Checkout</button>
 </div>
 
 <script>
-function selectPlan(name, price){
-    const plan = {
-        service: name,
-        amount: price
-    };
+let selectedService = null;
 
-    localStorage.setItem("selectedPlan", JSON.stringify(plan));
+function selectService(name, price){
+    selectedService = {name, price};
+    alert(name + " selected");
+}
+
+function goCheckout(){
+    if(!selectedService){
+        alert("Please select a service");
+        return;
+    }
+    localStorage.setItem("selectedService", JSON.stringify(selectedService));
     window.location.href = "checkout.html";
 }
 </script>
