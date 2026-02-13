@@ -1,56 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>Checkout | Instastrategix</title>
 <style>
-body {
-    background: #0f172a;
-    color: white;
-    font-family: Arial;
-    text-align: center;
-    padding: 50px;
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0f172a;
+    color:white;
 }
-.card {
-    background: #1e293b;
-    padding: 30px;
-    width: 400px;
-    margin: auto;
-    border-radius: 15px;
+.container{
+    max-width:600px;
+    margin:100px auto;
+    background:#1e293b;
+    padding:30px;
+    border-radius:10px;
 }
-button {
-    background: #22c55e;
-    padding: 12px;
-    border: none;
-    color: white;
-    width: 100%;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
+button{
+    width:100%;
+    padding:15px;
+    background:#22c55e;
+    border:none;
+    border-radius:8px;
+    color:white;
+    font-size:16px;
+    margin-top:20px;
+    cursor:pointer;
 }
 </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>Order Summary</h2>
-    <h3 id="planName"></h3>
-    <p id="planPrice"></p>
-    <button onclick="payNow()">Proceed to Payment</button>
+<div class="container">
+    <h2>Checkout</h2>
+    <p id="serviceName"></p>
+    <p id="servicePrice"></p>
+
+    <h3>Choose Payment Method</h3>
+    <select id="paymentMethod">
+        <option>UPI</option>
+        <option>Google Pay</option>
+        <option>Razorpay</option>
+    </select>
+
+    <button onclick="makePayment()">Pay Now</button>
 </div>
 
 <script>
-const plan = JSON.parse(localStorage.getItem("selectedPlan"));
+const service = JSON.parse(localStorage.getItem("selectedService"));
 
-if(!plan){
+if(!service){
     window.location.href = "payment.html";
 }
 
-document.getElementById("planName").innerText = plan.name;
-document.getElementById("planPrice").innerText = "Amount: ₹" + plan.amount;
+document.getElementById("serviceName").innerText = "Service: " + service.name;
+document.getElementById("servicePrice").innerText = "Amount: ₹" + service.price;
 
-function payNow(){
-    // Demo success redirect
-    window.location.href = "success.html";
+function makePayment(){
+    const success = Math.random() > 0.3;
+
+    if(success){
+        localStorage.setItem("paymentStatus","success");
+        window.location.href = "success.html";
+    }else{
+        window.location.href = "failed.html";
+    }
 }
 </script>
 
